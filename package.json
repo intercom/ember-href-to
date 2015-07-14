@@ -1,7 +1,7 @@
 {
   "name": "ember-href-to",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "A lightweight alternative to `{{link-to}}`",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -15,8 +15,8 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
-  "license": "MIT",
+  "author": "Intercom",
+  "license": "Apache",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
     "ember-cli": "1.13.1",
