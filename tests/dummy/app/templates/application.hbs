@@ -1,3 +1,22 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<h1 id="title">\{{href-to}}</h1>
+<h3>A lightweight alternative to \{{link-to}}</h3>
+
+\{{link-to}}:
+<div id="link-to-links">
+  [{{#link-to 'index'}}Index{{/link-to}}]
+  [{{#link-to 'about'}}About{{/link-to}}]
+  [{{#link-to 'pages.first'}}First Page{{/link-to}}]
+  [{{#link-to 'pages.second'}}Second Page{{/link-to}}]
+</div>
+<br />
+
+\{{href-to}}:
+<div id="href-to-links">
+  [<a href="{{href-to 'index'}}">Index</a>]
+  [<a href="{{href-to 'about'}}">About</a>]
+  [<a href="{{href-to 'pages.first'}}">First Page</a>]
+  [<a href="{{href-to 'pages.second'}}">Second Page</a>]
+</div>
+<hr />
 
 {{outlet}}
