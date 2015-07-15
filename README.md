@@ -1,25 +1,28 @@
-# Ember-href-to
+# ember-href-to
 
-This README outlines the details of collaborating on this Ember addon.
+A lightweight replacement for `{{link-to}}`
+
+Questions? Ping me [@gavinjoyce](https://twitter.com/gavinjoyce)
 
 ## Installation
+
+This is an Ember CLI addon, to install:
+
+`npm install ember-href-to --save`
+
+## Usage Instructions
+
+```html
+<a href="{{href-to 'contacts.contact' contact}}">View Contact</a>
+```
+
+## Development Instructions
 
 * `git clone` this repository
 * `npm install`
 * `bower install`
 
-## Running
+### Running
 
 * `ember server`
 * Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).

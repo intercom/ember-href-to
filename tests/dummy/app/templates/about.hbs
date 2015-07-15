@@ -1,0 +1,25 @@
+<h2>About</h2>
+
+\{{link-to}}:
+<div id="about-link-to-links">
+  [{{#link-to 'about' (query-params section='one')}}One{{/link-to}}]
+  [{{#link-to 'about' (query-params section='two')}}Two{{/link-to}}]
+  [{{#link-to 'about' (query-params section=dynamic)}}Three{{/link-to}}]
+</div>
+
+\{{href-to}}:
+<div id="about-href-to-links">
+  [<a href="{{href-to 'about' (query-params section='one')}}" class="js__href-to">One</a>]
+  [<a href="{{href-to 'about' (query-params section='two')}}" class="js__href-to">Two</a>]
+  [<a href="{{href-to 'about' (query-params section=dynamic)}}" class="js__href-to">Three</a>]
+
+  dynamic QP value for Three link: {{input value=dynamic}}
+</div>
+
+<hr />
+Section: {{section}}
+
+<br />
+<br />
+Action: <a href="#" {{action "increment"}}>Increment</a> <span id="count">{{count}}</span>
+<br />
