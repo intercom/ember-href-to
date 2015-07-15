@@ -1,1 +1,2 @@
-export { default, hrefTo } from 'ember-href-to/helpers/href-to';
+import hrefTo from 'ember-href-to/helpers/href-to';
+export default hrefTo;
