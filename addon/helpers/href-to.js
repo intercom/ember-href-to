@@ -2,7 +2,6 @@ import Em from 'ember';
 import { getRouter } from 'ember-href-to/lib/container-lookup';
 
 var appNeedsClickHandler = true;
-var router;
 
 function setupClickHandler() {
   Em.$(document.body).on('click', 'a', function(e) {
@@ -47,7 +46,7 @@ export function hrefTo(params) {
   args.push.apply(args, params);
   args.push({ queryParams: queryParams.values });
 
-  router = router || getRouter();
+  var router = getRouter();
   return router.generate.apply(router, args);
 }
 
