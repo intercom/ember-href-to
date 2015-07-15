@@ -1,6 +1,6 @@
 # ember-href-to
 
-A lightweight alternative to `{{link-to}}`.
+A lightweight alternative to `{{link-to}}`. No views, no class bindings - just a bound anchor href and a click handler.
 
 Questions? Ping me [@gavinjoyce](https://twitter.com/gavinjoyce)
 
