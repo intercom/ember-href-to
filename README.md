@@ -1,6 +1,6 @@
 # ember-href-to
 
-A lightweight replacement for `{{link-to}}`
+A lightweight alternative to `{{link-to}}`.
 
 Questions? Ping me [@gavinjoyce](https://twitter.com/gavinjoyce)
 
