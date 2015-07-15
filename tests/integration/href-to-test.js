@@ -1,6 +1,5 @@
 import Em from 'ember';
 import startApp from 'dummy/tests/helpers/start-app';
-import hrefTo from 'ember-href-to/helpers/href-to';
 
 function leftClick(selector) {
   triggerEvent(selector, 'click', { which: 1 });
@@ -39,6 +38,14 @@ test('clicking a simple href-to', function(assert) {
   });
 });
 
+test('clicking a href-to with an inner element', function(assert) {
+  visit('/');
+  leftClick('#inner-span');
+  andThen(function() {
+    assert.equal(currentURL(), '/pages/second');
+  });
+});
+
 test('clicking a href-to to a nested route', function(assert) {
   visit('/');
   leftClick('#href-to-links a:contains(Second Page)');
@@ -63,7 +70,6 @@ test('clicking an action works', function(assert) {
   visit('/about');
   leftClick('a:contains(Increment)');
   andThen(function() {
-    console.log('href-to', hrefTo);
     assert.equal($('#count').text(), '1');
   });
 });

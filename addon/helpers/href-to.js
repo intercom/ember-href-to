@@ -6,12 +6,17 @@ var router;
 
 function setupClickHandler() {
   Em.$(document.body).on('click', 'a', function(e) {
-    var $target = Em.$(e.target);
+    var $target = Em.$(e.currentTarget);
     var handleClick = (e.which === 1 && !e.ctrlKey && !e.metaKey);
 
     if(handleClick && !$target.hasClass('ember-view') && Em.isNone($target.attr('data-ember-action'))) {
       var router = getRouter();
-      var url = '/' + $target.attr('href').substr(router.rootURL.length);
+
+      var url = $target.attr('href');
+      var rootUrlLength = router.rootURL.length;
+      if(rootUrlLength > 1) {
+        url = url.substr(rootUrlLength);
+      }
 
       if(router.router.recognizer.recognize(url)) {
         router.handleURL(url);
