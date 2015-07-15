@@ -1,6 +1,6 @@
 {
   "name": "ember-href-to",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A lightweight alternative to `{{link-to}}`",
   "directories": {
     "doc": "doc",
@@ -39,9 +39,7 @@
   "keywords": [
     "ember-addon"
   ],
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "ember-addon": {
     "configPath": "tests/dummy/config"
   }
