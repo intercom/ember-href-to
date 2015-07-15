@@ -16,6 +16,8 @@ This is an Ember CLI addon, to install:
 <a href="{{href-to 'contacts.contact' contact}}">View Contact</a>
 ```
 
+![href-to2](https://cloud.githubusercontent.com/assets/2526/8709271/0a8b934a-2b39-11e5-8f24-89ece7d6c45d.gif)
+
 ## Development Instructions
 
 * `git clone` this repository
