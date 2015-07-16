@@ -12,15 +12,17 @@ function setupClickHandler() {
       var router = getRouter();
 
       var url = $target.attr('href');
-      var rootUrlLength = router.rootURL.length;
-      if(rootUrlLength > 1) {
-        url = url.substr(rootUrlLength);
-      }
+      if(url) {
+        var rootUrlLength = router.rootURL.length;
+        if(rootUrlLength > 1) {
+          url = url.substr(rootUrlLength);
+        }
 
-      if(router.router.recognizer.recognize(url)) {
-        router.handleURL(url);
-        router.router.updateURL(url);
-        return false;
+        if(router.router.recognizer.recognize(url)) {
+          router.handleURL(url);
+          router.router.updateURL(url);
+          return false;
+        }
       }
     }
     return true;

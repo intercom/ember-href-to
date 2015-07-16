@@ -46,6 +46,14 @@ test('clicking a href-to with an inner element', function(assert) {
   });
 });
 
+test('clicking an anchor which has no href', function(assert) {
+  visit('/');
+  leftClick('#href-to-links a:contains(An anchor with no href)');
+  andThen(function() {
+    assert.equal(currentURL(), '/');
+  });
+});
+
 test('clicking a href-to to a nested route', function(assert) {
   visit('/');
   leftClick('#href-to-links a:contains(Second Page)');
