@@ -3,7 +3,15 @@ import { getRouter } from 'ember-href-to/lib/container-lookup';
 
 var appNeedsClickHandler = true;
 
-function setupClickHandler() {
+function _getNormalisedRootUrl(router) {
+  var rootURL = router.rootURL;
+  if(rootURL.charAt(rootURL.length - 1) !== '/') {
+    rootURL = rootURL + '/';
+  }
+  return rootURL;
+}
+
+function _setupClickHandler() {
   Em.$(document.body).on('click', 'a', function(e) {
     var $target = Em.$(e.currentTarget);
     var handleClick = (e.which === 1 && !e.ctrlKey && !e.metaKey);
@@ -11,12 +19,11 @@ function setupClickHandler() {
     if(handleClick && !$target.hasClass('ember-view') && Em.isNone($target.attr('data-ember-action'))) {
       var router = getRouter();
 
+      var rootURL = _getNormalisedRootUrl(router);
       var url = $target.attr('href');
-      if(url && url.indexOf(router.rootURL) === 0) {
-        var rootUrlLength = router.rootURL.length;
-        if(rootUrlLength > 1) {
-          url = url.substr(rootUrlLength);
-        }
+
+      if(url && url.indexOf(rootURL) === 0) {
+        url = url.substr(rootURL.length - 1);
 
         if(router.router.recognizer.recognize(url)) {
           router.handleURL(url);
@@ -31,7 +38,7 @@ function setupClickHandler() {
 
 export function hrefTo(params) {
   if(appNeedsClickHandler) {
-    setupClickHandler();
+    _setupClickHandler();
     appNeedsClickHandler = false;
   }
 
