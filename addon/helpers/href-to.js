@@ -12,7 +12,7 @@ function setupClickHandler() {
       var router = getRouter();
 
       var url = $target.attr('href');
-      if(url && url.indexOf('://') === -1) {
+      if(url && url.indexOf(router.rootURL) === 0) {
         var rootUrlLength = router.rootURL.length;
         if(rootUrlLength > 1) {
           url = url.substr(rootUrlLength);
