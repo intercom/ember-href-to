@@ -21,7 +21,7 @@ This is an Ember CLI addon, to install:
 ```html
 <a href="{{href-to 'index'}}">Go Home</a>
 <a href="{{href-to 'contacts.contact' contact}}">View Contact 1</a>
-<a href="{{href-to 'contacts.contact' '2}}">View Contact 2</a>
+<a href="{{href-to 'contacts.contact' 2}}">View Contact 2</a>
 <a href="{{href-to 'contact-us'}} (query-params section='first')">You can also use query params</a>
 ```
 
