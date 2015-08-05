@@ -59,4 +59,4 @@ export function hrefTo(params) {
   return router.generate.apply(router, args);
 }
 
-export default Em.HTMLBars.makeBoundHelper(hrefTo);
+export default Em.Helper.helper(hrefTo);
