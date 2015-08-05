@@ -2,9 +2,11 @@
 
 A lightweight alternative to `{{link-to}}`. No views, no class bindings - just a bound anchor href and a click handler.
 
+[![Build Status](https://travis-ci.org/intercom/ember-href-to.svg)](https://travis-ci.org/intercom/ember-href-to)
+
 ## Why use it?
 
-Every time you use a `{{link-to}}`, you create a view. This is usually fine, but in cases where you're creating many of these, performance can suffer. `{{href-to}}` simply creates a URL and is [10x faster](https://github.com/GavinJoyce/ember-performance/pull/1) than `{{link-to}}` in Ember 1.13.4.
+Every time you use a `{{link-to}}`, you create a view. This is usually fine, but in cases where you're creating many of these, performance can suffer. `{{href-to}}` simply creates a URL and is [12x faster](https://github.com/GavinJoyce/ember-performance/pull/1) than `{{link-to}}` in Ember 1.13.4.
 
 Questions? Ping me [@gavinjoyce](https://twitter.com/gavinjoyce)
 

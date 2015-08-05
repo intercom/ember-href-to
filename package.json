@@ -16,7 +16,7 @@
     "node": ">= 0.10.0"
   },
   "author": "Intercom",
-  "license": "Apache",
+  "license": "Apache-2.0",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
     "ember-cli": "1.13.1",
