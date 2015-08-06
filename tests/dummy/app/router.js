@@ -11,6 +11,7 @@ Router.map(function() {
     this.route('first');
     this.route('second');
   });
+  this.route('contact', { path: 'contact/:contact_id' });
 });
 
 export default Router;
