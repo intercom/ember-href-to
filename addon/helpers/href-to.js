@@ -12,28 +12,43 @@ function _getNormalisedRootUrl(router) {
 }
 
 function _setupClickHandler() {
-  Em.$(document.body).on('click', 'a', function(e) {
-    var $target = Em.$(e.currentTarget);
-    var handleClick = (e.which === 1 && !e.ctrlKey && !e.metaKey);
 
-    if(handleClick && !$target.hasClass('ember-view') && Em.isNone($target.attr('data-ember-action'))) {
-      var router = getRouter();
+  document.getElementsByTagName('body')[0].onclick = function(e) {
+    var target = _parentLinkNode(e.target);
+    if (target) {
+      var handleClick = (e.which === 1 && !e.ctrlKey && !e.metaKey);
+      if(handleClick && !_isEmberViewTarget(target) && Em.isNone(target.getAttribute('data-ember-action'))) {
+        var router = getRouter();
 
-      var rootURL = _getNormalisedRootUrl(router);
-      var url = $target.attr('href');
+        var rootURL = _getNormalisedRootUrl(router);
+        var url = target.getAttribute('href');
 
-      if(url && url.indexOf(rootURL) === 0) {
-        url = url.substr(rootURL.length - 1);
+        if(url && url.indexOf(rootURL) === 0) {
+          url = url.substr(rootURL.length - 1);
 
-        if(router.router.recognizer.recognize(url)) {
-          router.handleURL(url);
-          router.router.updateURL(url);
-          return false;
+          if(router.router.recognizer.recognize(url)) {
+            router.handleURL(url);
+            router.router.updateURL(url);
+            return false;
+          }
         }
       }
     }
     return true;
-  });
+  };
+}
+
+function _isEmberViewTarget(target) {
+  return target.className.indexOf('ember-view') > -1;
+}
+
+function _parentLinkNode(node) {
+  if (node.tagName === 'A') {
+    return node;
+  } else if (!node.parentNode) {
+    return false;
+  }
+  return _parentLinkNode(node.parentNode);
 }
 
 export function hrefTo(params) {
