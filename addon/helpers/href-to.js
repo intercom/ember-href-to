@@ -42,6 +42,10 @@ export function hrefTo(params) {
     appNeedsClickHandler = false;
   }
 
+  if(params.contains(undefined)) {
+    return;
+  }
+
   var lastParam = params[params.length - 1];
 
   var queryParams = {};
