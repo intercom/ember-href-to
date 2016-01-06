@@ -1,5 +1,6 @@
 import Em from 'ember';
 import startApp from 'dummy/tests/helpers/start-app';
+import { getRouter } from 'ember-href-to/lib/container-lookup';
 
 function leftClick(selector) {
   triggerEvent(selector, 'click', { which: 1 });
@@ -79,5 +80,15 @@ test('clicking an action works', function(assert) {
   leftClick('a:contains(Increment)');
   andThen(function() {
     assert.equal($('#count').text(), '1');
+  });
+});
+
+test('clicking a catch-all 404 link', function(assert) {
+  visit('/');
+  leftClick('#normal-links a:contains(Reviews)');
+
+  andThen(function() {
+    let router = getRouter();
+    assert.notEqual(router.currentRouteName, '404');
   });
 });
