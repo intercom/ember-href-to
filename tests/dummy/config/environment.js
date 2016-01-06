@@ -43,5 +43,7 @@ module.exports = function(environment) {
 
   }
 
+  ENV['hrefToDefaults'] = { catchAll404Route: '404' };
+
   return ENV;
 };
