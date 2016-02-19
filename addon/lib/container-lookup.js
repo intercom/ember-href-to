@@ -15,7 +15,9 @@ export function containerLookup(key) {
     application = getApplication();
   }
 
-  return application.__container__.lookup(key);
+  if(application) {
+    return application.__container__.lookup(key);
+  }
 }
 
 export function getRouter() {
