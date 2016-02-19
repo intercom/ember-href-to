@@ -2,7 +2,7 @@
 
 A lightweight alternative to `{{link-to}}`. No views, no class bindings - just a bound anchor href and a click handler.
 
-[![Build Status](https://travis-ci.org/intercom/ember-href-to.svg)](https://travis-ci.org/intercom/ember-href-to)
+[![Build Status](https://travis-ci.org/intercom/ember-href-to.svg)](https://travis-ci.org/intercom/ember-href-to) [![Ember Observer Score](http://emberobserver.com/badges/ember-href-to.svg)](http://emberobserver.com/addons/ember-href-to)
 
 ## Why use it?
 
