@@ -42,6 +42,11 @@ export function hrefTo(params) {
     appNeedsClickHandler = false;
   }
 
+  var router = getRouter();
+  if(router === undefined) {
+    return;
+  }
+
   var lastParam = params[params.length - 1];
 
   var queryParams = {};
@@ -55,7 +60,6 @@ export function hrefTo(params) {
   args.push.apply(args, params);
   args.push({ queryParams: queryParams.values });
 
-  var router = getRouter();
   return router.generate.apply(router, args);
 }
 
