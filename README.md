@@ -14,7 +14,7 @@ Questions? Ping me [@gavinjoyce](https://twitter.com/gavinjoyce)
 
 This is an Ember CLI addon, to install:
 
-`npm install ember-href-to --save`
+`ember install ember-href-to`
 
 ## Usage Instructions
 
