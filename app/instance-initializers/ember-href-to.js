@@ -8,10 +8,15 @@ function _getNormalisedRootUrl(router) {
   return rootURL;
 }
 
+function _lookupRouter(applicationInstance) {
+  const container = 'lookup' in applicationInstance ? applicationInstance : applicationInstance.container;
+  return container.lookup('router:main');
+}
+
 export default {
   name: 'ember-href-to',
   initialize: function(applicationInstance) {
-    let router = applicationInstance.container.lookup('router:main');
+    let router = _lookupRouter(applicationInstance);
     let rootURL = _getNormalisedRootUrl(router);
     let $body = Em.$(document.body);
 

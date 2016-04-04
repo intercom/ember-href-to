@@ -1,8 +1,9 @@
 import Em from 'ember';
+import getOwner from 'ember-getowner-polyfill';
 
 export default Em.Helper.extend({
   compute(params) {
-    let router = this.container.lookup('router:main');
+    let router = getOwner(this).lookup('router:main');
     if(router === undefined || router.router === undefined) {
       return;
     }
