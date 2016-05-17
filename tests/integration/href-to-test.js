@@ -81,3 +81,14 @@ test('clicking an action works', function(assert) {
     assert.equal($('#count').text(), '1');
   });
 });
+
+test('clicking a href-to to should propagate events and prevent default ', function(assert) {
+  visit('/');
+  andThen(function() {
+    let event = Em.$.Event('click', { which: 1 });
+    let element = findWithAssert('#href-to-links a:contains(About)');
+    element.trigger(event);
+    assert.equal(event.isDefaultPrevented(), true, 'should prevent default');
+    assert.equal(event.isPropagationStopped(), false, 'should not stop propagation');
+  });
+});
