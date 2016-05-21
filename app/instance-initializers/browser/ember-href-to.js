@@ -25,7 +25,15 @@ export default {
       let $target = Em.$(e.currentTarget);
       let handleClick = (e.which === 1 && !e.ctrlKey && !e.metaKey);
 
-      if(handleClick && !$target.hasClass('ember-view') && Em.isNone($target.attr('data-ember-action'))) {
+      if( handleClick && Em.isNone( $target.attr('data-ember-action') )
+          && (
+            !$target.hasClass('ember-view')
+            || (
+              $target.hasClass('href-to')
+              && Em.isPresent($target.attr('href'))
+            )
+          )
+        ) {
         let url = $target.attr('href');
 
         if(url && url.indexOf(rootURL) === 0) {
