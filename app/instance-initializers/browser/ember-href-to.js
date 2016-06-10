@@ -13,6 +13,15 @@ function _lookupRouter(applicationInstance) {
   return container.lookup('router:main');
 }
 
+export function canHandle(e) {
+  let $target = Em.$(e.currentTarget);
+  let handleClick = (e.which === 1 && !e.ctrlKey && !e.metaKey);
+  return handleClick &&
+    !$target.hasClass('ember-view') &&
+    Em.isNone($target.attr('data-ember-action')) &&
+    $target.attr('download') === undefined;
+}
+
 export default {
   name: 'ember-href-to',
   initialize: function(applicationInstance) {
@@ -22,10 +31,8 @@ export default {
 
     $body.off('click.href-to', 'a');
     $body.on('click.href-to', 'a', function(e) {
-      let $target = Em.$(e.currentTarget);
-      let handleClick = (e.which === 1 && !e.ctrlKey && !e.metaKey);
-
-      if(handleClick && !$target.hasClass('ember-view') && Em.isNone($target.attr('data-ember-action'))) {
+      if(canHandle(e)) {
+        let $target = Em.$(e.currentTarget);
         let url = $target.attr('href');
 
         if(url && url.indexOf(rootURL) === 0) {
