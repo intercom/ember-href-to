@@ -24,6 +24,7 @@ before_install:
   - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
   - "npm config set spin false"
   - "npm install -g npm@^3"
+  - "npm install -g phantomjs-prebuilt@2"
 
 install:
   - npm install -g bower
