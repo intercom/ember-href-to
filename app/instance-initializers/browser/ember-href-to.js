@@ -41,7 +41,7 @@ export default {
           if(router.router.recognizer.recognize(url)) {
             router.handleURL(url);
             router.router.updateURL(url);
-            return false;
+            e.preventDefault();
           }
         }
       }
