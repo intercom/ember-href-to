@@ -1,0 +1,36 @@
+<h2>QPS</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>String: "{{string}}"</td>
+      <td>Number: {{number}}</td>
+      <td>bool: {{bool}}</td>
+    </tr>
+    <tr>
+      <td><input type="text" value={{string}} oninput={{action (mut string) value="target.value"}}></td>
+      <td><input type="number" value={{number}} oninput={{action (mut number) value="target.value"}}></td>
+      <td><input type="checkbox" checked={{bool}} onchange={{action (mut bool) value="target.checked"}}></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Link-to</h3>
+<ul class="link-tos">
+  {{#each model as |pet|}}
+    <li>
+      {{#link-to 'qps.details' pet}}{{pet.name}}{{/link-to}}
+    </li>
+  {{/each}}
+</ul>
+
+<h3>href-to</h3>
+<ul class="href-tos">
+  {{#each model as |pet|}}
+    <li>
+      <a href="{{href-to 'qps.details' pet}}">{{pet.name}}</a>
+    </li>
+  {{/each}}
+</ul>
+
+{{outlet}}

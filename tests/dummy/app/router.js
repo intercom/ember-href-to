@@ -11,6 +11,9 @@ Router.map(function() {
     this.route('first');
     this.route('second');
   });
+  this.route('qps', function() {
+    this.route('details', { path: ':pet_id' });
+  });
 });
 
 export default Router;
