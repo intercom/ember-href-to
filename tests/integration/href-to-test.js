@@ -1,3 +1,4 @@
+import {module, test} from 'qunit';
 import Em from 'ember';
 import startApp from 'dummy/tests/helpers/start-app';
 
