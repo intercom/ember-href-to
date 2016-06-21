@@ -12,4 +12,4 @@ export default Em.Route.extend({
   model() {
     return pets;
   }
-})
+});
