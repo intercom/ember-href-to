@@ -1,0 +1,19 @@
+<section style="border: 1px solid lightgray; padding: 10px;">
+  <h4>More data about {{model.name}}</h4>
+  favourite color: <strong>{{model.favouriteColor}}</strong> | age: <strong>{{model.age}}</strong>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>dobleNestedString: "{{doubleNestedString}}"</td>
+        <td>dobleNestedNumber: {{doubleNestedNumber}}</td>
+        <td>dobleNestedBool: {{doubleNestedBool}}</td>
+      </tr>
+      <tr>
+        <td><input type="text" value={{doubleNestedString}} oninput={{action (mut doubleNestedString) value="target.value"}}></td>
+        <td><input type="number" value={{doubleNestedNumber}} oninput={{action (mut doubleNestedNumber) value="target.value"}}></td>
+        <td><input type="checkbox" checked={{doubleNestedBool}} onchange={{action (mut doubleNestedBool) value="target.checked"}}></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

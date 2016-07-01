@@ -12,7 +12,9 @@ Router.map(function() {
     this.route('second');
   });
   this.route('qps', function() {
-    this.route('details', { path: ':pet_id' });
+    this.route('details', { path: ':pet_id' }, function() {
+      this.route('more');
+    });
   });
 });
 
