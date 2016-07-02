@@ -10,9 +10,9 @@
         <td>dobleNestedBool: {{doubleNestedBool}}</td>
       </tr>
       <tr>
-        <td><input type="text" value={{doubleNestedString}} oninput={{action (mut doubleNestedString) value="target.value"}}></td>
-        <td><input type="number" value={{doubleNestedNumber}} oninput={{action (mut doubleNestedNumber) value="target.value"}}></td>
-        <td><input type="checkbox" checked={{doubleNestedBool}} onchange={{action (mut doubleNestedBool) value="target.checked"}}></td>
+        <td><input type="text" id="qps-input-double-nested-text" value={{doubleNestedString}} oninput={{action (mut doubleNestedString) value="target.value"}}></td>
+        <td><input type="number" id="qps-input-double-nested-number" value={{doubleNestedNumber}} oninput={{action (mut doubleNestedNumber) value="target.value"}}></td>
+        <td><input type="checkbox" id="qps-input-double-nested-bool" checked={{doubleNestedBool}} onchange={{action (mut doubleNestedBool) value="target.checked"}}></td>
       </tr>
     </tbody>
   </table>

@@ -9,14 +9,14 @@
         <td>nestedBool: {{nestedBool}}</td>
       </tr>
       <tr>
-        <td><input type="text" value={{nestedString}} oninput={{action (mut nestedString) value="target.value"}}></td>
-        <td><input type="number" value={{nestedNumber}} oninput={{action (mut nestedNumber) value="target.value"}}></td>
-        <td><input type="checkbox" checked={{nestedBool}} onchange={{action (mut nestedBool) value="target.checked"}}></td>
+        <td><input type="text" id="qps-input-nested-text" value={{nestedString}} oninput={{action (mut nestedString) value="target.value"}}></td>
+        <td><input type="number" id="qps-input-nested-number" value={{nestedNumber}} oninput={{action (mut nestedNumber) value="target.value"}}></td>
+        <td><input type="checkbox" id="qps-input-nested-bool" checked={{nestedBool}} onchange={{action (mut nestedBool) value="target.checked"}}></td>
       </tr>
     </tbody>
   </table>
 
-  <a href="{{href-to 'qps.details.more'}}">href-to for more info</a>
-  {{#link-to 'qps.details.more'}}link-to for more info{{/link-to}}
+  <a href="{{href-to 'qps.details.more'}}" id="qps-details-more-href-to">href-to for more info</a>
+  {{#link-to 'qps.details.more' id="qps-details-more-link-to"}}link-to for more info{{/link-to}}
   {{outlet}}
 </section>

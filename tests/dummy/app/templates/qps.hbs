@@ -9,9 +9,9 @@
         <td>bool: {{bool}}</td>
       </tr>
       <tr>
-        <td><input type="text" value={{string}} oninput={{action (mut string) value="target.value"}}></td>
-        <td><input type="number" value={{number}} oninput={{action (mut number) value="target.value"}}></td>
-        <td><input type="checkbox" checked={{bool}} onchange={{action (mut bool) value="target.checked"}}></td>
+        <td><input type="text" id="qps-input-text" value={{string}} oninput={{action (mut string) value="target.value"}}></td>
+        <td><input type="number" id="qps-input-number" value={{number}} oninput={{action (mut number) value="target.value"}}></td>
+        <td><input type="checkbox" id="qps-input-bool" checked={{bool}} onchange={{action (mut bool) value="target.checked"}}></td>
       </tr>
     </tbody>
   </table>

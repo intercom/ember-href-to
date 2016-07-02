@@ -15,9 +15,9 @@ export default Em.Helper.extend({
       queryParams = params.pop().values;
     }
     let routing = this.get('_routing');
-    let currentQueryParams = routing.get('currentState.routerJsState.queryParams');
-    queryParams = Em.merge(Em.merge({}, currentQueryParams), queryParams);
     let targetRouteName = params.shift();
+    let currentQueryParams = routing.get('currentState.routerJsState.fullQueryParams');
+    queryParams = Em.merge(Em.merge({}, currentQueryParams), queryParams);
 
     return routing.generateURL(targetRouteName, params, queryParams);
   }
