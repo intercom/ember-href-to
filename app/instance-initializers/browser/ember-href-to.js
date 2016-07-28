@@ -16,8 +16,10 @@ function _lookupRouter(applicationInstance) {
 export function canHandle(e) {
   let $target = Em.$(e.currentTarget);
   let handleClick = (e.which === 1 && !e.ctrlKey && !e.metaKey);
+
   return handleClick &&
     !$target.hasClass('ember-view') &&
+    Em.isNone($target.attr('data-href-to-ignore')) &&
     Em.isNone($target.attr('data-ember-action')) &&
     $target.attr('download') === undefined;
 }
