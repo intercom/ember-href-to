@@ -1,0 +1,22 @@
+<section style="border: 1px solid lightgray; padding: 10px;">
+  <h3>Details of {{model.name}}</h3>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>nestedString: "{{nestedString}}"</td>
+        <td>nestedNumber: {{nestedNumber}}</td>
+        <td>nestedBool: {{nestedBool}}</td>
+      </tr>
+      <tr>
+        <td><input type="text" id="qps-input-nested-text" value={{nestedString}} oninput={{action (mut nestedString) value="target.value"}}></td>
+        <td><input type="number" id="qps-input-nested-number" value={{nestedNumber}} oninput={{action (mut nestedNumber) value="target.value"}}></td>
+        <td><input type="checkbox" id="qps-input-nested-bool" checked={{nestedBool}} onchange={{action (mut nestedBool) value="target.checked"}}></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="{{href-to 'qps.details.more'}}" id="qps-details-more-href-to">href-to for more info</a>
+  {{#link-to 'qps.details.more' id="qps-details-more-link-to"}}link-to for more info{{/link-to}}
+  {{outlet}}
+</section>

@@ -1,26 +1,24 @@
 import Em from 'ember';
-import getOwner from 'ember-getowner-polyfill';
 
 export default Em.Helper.extend({
-  compute(params) {
-    let router = getOwner(this).lookup('router:main');
-    if(router === undefined || router.router === undefined) {
-      return;
-    }
+  _routing: Em.inject.service('-routing'),
 
+  onQpsChange: Em.observer('_routing.currentState', function() {
+    this.recompute();
+  }),
+
+  compute(params) {
     let lastParam = params[params.length - 1];
 
     let queryParams = {};
     if (lastParam && lastParam.isQueryParams) {
-      queryParams = params.pop();
+      queryParams = params.pop().values;
     }
-
+    let routing = this.get('_routing');
     let targetRouteName = params.shift();
+    let currentQueryParams = routing.get('currentState.routerJsState.fullQueryParams');
+    queryParams = Em.merge(Em.merge({}, currentQueryParams), queryParams);
 
-    let args = [targetRouteName];
-    args.push.apply(args, params);
-    args.push({ queryParams: queryParams.values });
-
-    return router.generate.apply(router, args);
+    return routing.generateURL(targetRouteName, params, queryParams);
   }
 });
