@@ -38,7 +38,7 @@ export default {
         let $target = Em.$(e.currentTarget);
         let url = $target.attr('href');
 
-        if(url.indexOf(origin) === 0){
+        if(url && url.indexOf(origin) === 0){
           url = url.replace(origin, '');
         } 
 
