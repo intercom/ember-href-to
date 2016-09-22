@@ -1,6 +1,6 @@
-import {module, test} from 'qunit';
-import Em from 'ember';
-import startApp from 'dummy/tests/helpers/start-app';
+import Ember from 'ember';
+import { test } from 'qunit';
+import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 
 function leftClick(selector) {
   triggerEvent(selector, 'click', { which: 1 });
@@ -10,16 +10,7 @@ function assertAnchorIsActive(selector, assert) {
   assert.ok($(selector).hasClass('active'));
 }
 
-var application;
-
-module('Integration: href-to', {
-  beforeEach: function() {
-    application = startApp();
-  },
-  afterEach: function() {
-    Em.run(application, 'destroy');
-  }
-});
+moduleForAcceptance('Acceptance | href to');
 
 test('clicking a simple link-to', function(assert) {
   visit('/');
@@ -86,7 +77,7 @@ test('clicking an action works', function(assert) {
 test('clicking a href-to to should propagate events and prevent default ', function(assert) {
   visit('/');
   andThen(function() {
-    let event = Em.$.Event('click', { which: 1 });
+    let event = Ember.$.Event('click', { which: 1 });
     let element = findWithAssert('#href-to-links a:contains(About)');
     element.trigger(event);
     assert.equal(event.isDefaultPrevented(), true, 'should prevent default');

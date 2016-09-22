@@ -33,7 +33,7 @@ export default {
 
     $body.off('click.href-to', 'a');
     $body.on('click.href-to', 'a', function(e) {
-      if(canHandle(e)) {
+      if (canHandle(e)) {
         let $target = Em.$(e.currentTarget);
         let url = $target.attr('href');
 
