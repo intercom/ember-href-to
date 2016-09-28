@@ -15,7 +15,7 @@ function _lookupRouter(applicationInstance) {
 
 export function canHandle(e) {
   let $target = Em.$(e.currentTarget);
-  let handleClick = (e.which === 1 && !e.ctrlKey && !e.metaKey);
+  let handleClick = (e.which === undefined || e.which === 1) && !e.ctrlKey && !e.metaKey;
 
   return handleClick &&
     !$target.hasClass('ember-view') &&
