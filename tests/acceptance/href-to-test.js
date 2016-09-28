@@ -84,3 +84,13 @@ test('clicking a href-to to should propagate events and prevent default ', funct
     assert.equal(event.isPropagationStopped(), false, 'should not stop propagation');
   });
 });
+
+test('[BUGFIX] it works with the `click` acceptance helper', function(assert) {
+  visit('/');
+  click('#href-to-links a:contains(About)');
+  andThen(function() {
+    assert.equal(currentURL(), '/about');
+    assertAnchorIsActive('#link-to-links a:contains(About)', assert);
+  });
+});
+
