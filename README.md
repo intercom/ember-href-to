@@ -25,6 +25,11 @@ This is an Ember CLI addon, to install:
 <a href="{{href-to 'contacts.contact' contact}}">View Contact 1</a>
 <a href="{{href-to 'contacts.contact' 2}}">View Contact 2</a>
 <a href="{{href-to 'contact-us' (query-params section='first')}}">You can also use query params</a>
+<a href="{{href-to 'contact-us'}}" data-href-to-ignore>
+  If you have a catchall route (this.route('catchall', { path: "/*" })),
+  you need to add the attribute "data-href-to-ignore",
+  otherwise you will always match it
+</a>
 ```
 
 As `{{href-to}}` simply generates a URL, you won't get automatic `active` class bindings as you do with `{{link-to}}`. Clicking on a `{{href-to}}` URL will trigger a full router transition though:
