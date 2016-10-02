@@ -29,6 +29,7 @@ export default {
   initialize: function(applicationInstance) {
     let router = _lookupRouter(applicationInstance);
     let rootURL = _getNormalisedRootUrl(router);
+    let origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
     let $body = Em.$(document.body);
 
     $body.off('click.href-to', 'a');
@@ -37,8 +38,13 @@ export default {
         let $target = Em.$(e.currentTarget);
         let url = $target.attr('href');
 
+        if(url && url.indexOf(origin) === 0){
+          url = url.replace(origin, '');
+        } 
+
         if(url && url.indexOf(rootURL) === 0) {
           url = url.substr(rootURL.length - 1);
+
 
           if(router.router.recognizer.recognize(url)) {
             router.handleURL(url);
