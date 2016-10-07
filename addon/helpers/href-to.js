@@ -2,7 +2,6 @@ import Em from 'ember';
 import getOwner from 'ember-getowner-polyfill';
 
 function hrefTo(context, targetRouteName, ...rest) {
-  console.log('GJ: hrefTo', arguments);
   let router = getOwner(context).lookup('router:main');
   if (router === undefined || router.router === undefined) {
     return;
