@@ -85,6 +85,15 @@ test('clicking a href-to to should propagate events and prevent default ', funct
   });
 });
 
+test('clicking an ember component with href-to should work', function(assert) {
+  visit('/');
+  leftClick('#href-to-links a:contains(A component with a bound href)');
+
+  andThen(() => {
+    assert.equal(currentURL(), '/about');
+  });
+});
+
 test('[BUGFIX] it works with the `click` acceptance helper', function(assert) {
   visit('/');
   click('#href-to-links a:contains(About)');
@@ -93,4 +102,3 @@ test('[BUGFIX] it works with the `click` acceptance helper', function(assert) {
     assertAnchorIsActive('#link-to-links a:contains(About)', assert);
   });
 });
-
