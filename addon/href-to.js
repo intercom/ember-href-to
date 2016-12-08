@@ -26,9 +26,10 @@ export default class {
 
   handle() {
     let router = this._getRouter();
+    let urlWithoutRoot = this.getUrlWithoutRoot();
 
-    router.handleURL(this.url);
-    router.router.updateURL(this.url);
+    router.handleURL(urlWithoutRoot);
+    router.router.updateURL(urlWithoutRoot);
     this.event.preventDefault();
   }
 
@@ -66,12 +67,18 @@ export default class {
       let router = this._getContainer().lookup('router:main');
       let rootUrl = this._getRootUrl();
       let isInternal = url.indexOf(rootUrl) === 0;
-      let urlWithoutTrailingSlash = url.substr(rootUrl.length - 1);
+      let urlWithoutRoot = this.getUrlWithoutRoot();
 
-      didRecognize = isInternal && router.router.recognizer.recognize(urlWithoutTrailingSlash);
+      didRecognize = isInternal && router.router.recognizer.recognize(urlWithoutRoot);
     }
 
     return didRecognize;
+  }
+
+  getUrlWithoutRoot() {
+    let url = this.url;
+    let rootUrl = this._getRootUrl();
+    return url.substr(rootUrl.length - 1);
   }
 
   _getRouter() {
@@ -83,7 +90,7 @@ export default class {
   }
 
   _getRootUrl() {
-    let router = this._getContainer().lookup('router:main');
+    let router = this._getRouter();
     let rootURL = router.rootURL;
 
     if (rootURL.charAt(rootURL.length - 1) !== '/') {
