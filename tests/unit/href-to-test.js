@@ -82,3 +82,14 @@ test('#hasNoDownload should be true if [download] is not present', function(asse
 
   assert.ok(hrefTo.hasNoDownload());
 });
+
+test('#getUrlWithoutRoot should remove the rootUrl', function(assert) {
+  let event = getClickEventOnEl("<a href='/a/inbox'>");
+  let hrefTo = createHrefToForEvent(event);
+
+  hrefTo._getRootUrl = () => '/a/';
+  assert.equal(hrefTo.getUrlWithoutRoot(), '/inbox', 'the url shouldn\'t include the rootUrl');
+
+  hrefTo._getRootUrl = () => '/';
+  assert.equal(hrefTo.getUrlWithoutRoot(), '/a/inbox', 'the url shouldn\'t include the rootUrl');
+});
