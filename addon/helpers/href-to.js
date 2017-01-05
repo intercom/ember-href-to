@@ -1,5 +1,6 @@
 import Em from 'ember';
-import getOwner from 'ember-getowner-polyfill';
+
+const { getOwner } = Em;
 
 function hrefTo(context, targetRouteName, ...rest) {
   let router = getOwner(context).lookup('router:main');
