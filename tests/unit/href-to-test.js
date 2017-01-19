@@ -83,6 +83,20 @@ test('#hasNoDownload should be true if [download] is not present', function(asse
   assert.ok(hrefTo.hasNoDownload());
 });
 
+test('#hasNoTargetBlank should be false if [target="_blank"] is present', function(assert) {
+  let event = getClickEventOnEl("<a href='' target='_blank'>");
+  let hrefTo = createHrefToForEvent(event);
+
+  assert.notOk(hrefTo.hasNoTargetBlank());
+});
+
+test('#hasNoTargetBlank should be true if [target="_blank"] is not present', function(assert) {
+  let event = getClickEventOnEl("<a href=''>");
+  let hrefTo = createHrefToForEvent(event);
+
+  assert.ok(hrefTo.hasNoTargetBlank());
+});
+
 test('#getUrlWithoutRoot should remove the rootUrl', function(assert) {
   let event = getClickEventOnEl("<a href='/a/inbox'>");
   let hrefTo = createHrefToForEvent(event);
