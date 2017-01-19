@@ -18,6 +18,7 @@ export default class {
   shouldHandle() {
     return this.isUnmodifiedLeftClick() &&
       this.isNotIgnored() &&
+      this.hasNoTargetBlank() &&
       this.hasNoActionHelper() &&
       this.hasNoDownload() &&
       this.isNotLinkComponent() &&
@@ -37,6 +38,10 @@ export default class {
     let e = this.event;
 
     return (e.which === undefined || e.which === 1) && !e.ctrlKey && !e.metaKey;
+  }
+
+  hasNoTargetBlank() {
+    return this.target.attr('target') !== '_blank';
   }
 
   isNotIgnored() {
