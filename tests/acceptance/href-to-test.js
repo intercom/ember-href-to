@@ -30,6 +30,14 @@ test('clicking a simple href-to', function(assert) {
   });
 });
 
+test('clicking a href-to with a params argument', function(assert) {
+  visit('/');
+  leftClick('#href-to-links a:contains(Second Page (with dynamic params))');
+  andThen(function() {
+    assert.equal(currentURL(), '/pages/second');
+  });
+});
+
 test('clicking a href-to with an inner element', function(assert) {
   visit('/');
   leftClick('#inner-span');

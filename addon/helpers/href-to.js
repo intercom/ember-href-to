@@ -25,7 +25,11 @@ function hrefTo(context, targetRouteName, ...rest) {
 export { hrefTo };
 
 export default Em.Helper.extend({
-  compute([targetRouteName, ...rest]) {
-    return hrefTo(this, targetRouteName, ...rest);
+  compute([targetRouteName, ...rest], namedArgs) {
+    if(namedArgs.params) {
+      return hrefTo(this, ...namedArgs.params);
+    } else {
+      return hrefTo(this, targetRouteName, ...rest);
+    }
   }
 });
