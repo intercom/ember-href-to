@@ -1,5 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import $ from 'jquery';
 
 function leftClick(selector) {
   triggerEvent(selector, 'click', { which: 1 });
