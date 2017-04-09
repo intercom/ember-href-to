@@ -2,11 +2,12 @@ import Em from 'ember';
 
 export default class {
 
-  constructor(applicationInstance, event) {
+  constructor(applicationInstance, event, target = event.target) {
     this.applicationInstance = applicationInstance;
     this.event = event;
-    this.target = Em.$(event.currentTarget);
-    this.url = this.target.attr('href');
+    this.target = target;
+    let hrefAttr = this.target.attributes.href;
+    this.url = hrefAttr && hrefAttr.value;
   }
 
   maybeHandle() {
@@ -41,25 +42,29 @@ export default class {
   }
 
   hasNoTargetBlank() {
-    return this.target.attr('target') !== '_blank';
+    let attr = this.target.attributes.target;
+    return !attr || attr.value !== '_blank';
   }
 
   isNotIgnored() {
-    return Em.isNone(this.target.attr('data-href-to-ignore'));
+    return !this.target.attributes['data-href-to-ignore'];
   }
 
   hasNoActionHelper() {
-    return Em.isNone(this.target.attr('data-ember-action'));
+    return !this.target.attributes['data-ember-action'];
   }
 
   hasNoDownload() {
-    return this.target.attr('download') === undefined;
+    return !this.target.attributes.download;
   }
 
   isNotLinkComponent() {
-    let id = this.target[0].id;
-    let componentInstance = this._getContainer(this.applicationInstance).lookup('-view-registry:main')[id];
-    let isLinkComponent = componentInstance ? componentInstance instanceof Em.LinkComponent : false;
+    let isLinkComponent = false;
+    let id = this.target.id;
+    if (id) {
+      let componentInstance = this._getContainer(this.applicationInstance).lookup('-view-registry:main')[id];
+      isLinkComponent = componentInstance && componentInstance instanceof Em.LinkComponent;
+    }
 
     return !isLinkComponent;
   }
