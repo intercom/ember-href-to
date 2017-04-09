@@ -92,11 +92,8 @@ test('clicking an action works', function(assert) {
 test('clicking a href-to to should propagate events and prevent default ', function(assert) {
   visit('/');
   andThen(function() {
-    let event = new window.MouseEvent('click', {
-      'view': window,
-      'bubbles': true,
-      'cancelable': true
-    });
+    let event = document.createEvent('MouseEvents');
+    event.initMouseEvent('click', true, true, window);
     let element = findWithAssert('#href-to-links a:contains(About)')[0];
     let ancestor = document.querySelector('#href-to-links');
     ancestor.addEventListener('click', function(e) {

@@ -7,7 +7,7 @@ function closestLink(el) {
     return el.closest('a');
   } else {
     el = el.parentElement;
-    while (el.tagName !== 'A') {
+    while (el && el.tagName !== 'A') {
       el = el.parentElement;
     }
     return el;
