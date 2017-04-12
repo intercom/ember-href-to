@@ -16,8 +16,10 @@ function closestLink(el) {
 export default {
   name: 'ember-href-to',
   initialize(applicationInstance) {
-    document.body.removeEventListener('click', hrefToClickHandler);
-    hrefToClickHandler = function(e) {
+    if (hrefToClickHandler !== undefined) {
+      document.body.removeEventListener('click', hrefToClickHandler);
+    }
+    hrefToClickHandler = function _hrefToClickHandler(e) {
       let link = e.target.tagName === 'A' ? e.target : closestLink(e.target);
       if (link) {
         let hrefTo = new HrefTo(applicationInstance, e, link);
