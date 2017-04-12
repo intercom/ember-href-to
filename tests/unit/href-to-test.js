@@ -20,22 +20,22 @@ function leftClickEvent() {
 }
 
 function getClickEventOnEl(string) {
-  let el = $(string);
+  let el = $(string)[0];
   let event = leftClickEvent();
-  event.currentTarget = el;
+  event.target = el;
 
   return event;
 }
 
 test('#isUnmodifiedLeftClick should be true for left clicks', function(assert) {
-  let event = { which: 1, ctrlKey: false, metaKey: false };
+  let event = { which: 1, ctrlKey: false, metaKey: false, target: { attributes: {} } };
   let hrefTo = createHrefToForEvent(event);
 
   assert.ok(hrefTo.isUnmodifiedLeftClick());
 });
 
 test('#isUnmodifiedLeftClick should be false for right clicks', function(assert) {
-  let event = { which: 2, ctrlKey: false, metaKey: false };
+  let event = { which: 2, ctrlKey: false, metaKey: false, target: { attributes: {} } };
   let hrefTo = createHrefToForEvent(event);
 
   assert.notOk(hrefTo.isUnmodifiedLeftClick());

@@ -14,7 +14,7 @@ test(`#isNotLinkComponent should be true if the event target is not an instance 
   this.render(hbs`{{not-a-link class='not-a-link'}}`);
 
   let event = leftClickEvent();
-  event.currentTarget = this.$('.not-a-link')[0];
+  event.target = this.$('.not-a-link')[0];
 
   let hrefTo = new HrefTo(this.container, event);
   assert.ok(hrefTo.isNotLinkComponent());
@@ -24,7 +24,7 @@ test(`#isNotLinkComponent should be false if the event target is an instance of 
   this.render(hbs`{{a-link 'about' 'about' class='a-link'}}`);
 
   let event = leftClickEvent();
-  event.currentTarget = this.$('.a-link')[0];
+  event.target = this.$('.a-link')[0];
 
   let hrefTo = new HrefTo(this.container, event);
   assert.notOk(hrefTo.isNotLinkComponent());

@@ -1,6 +1,6 @@
-import Ember from 'ember';
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import $ from 'jquery';
 
 function leftClick(selector) {
   triggerEvent(selector, 'click', { which: 1 });
@@ -46,6 +46,14 @@ test('clicking a href-to with an inner element', function(assert) {
   });
 });
 
+test('it doesn\'t affect clicking on elements outside links', function(assert) {
+  visit('/');
+  leftClick('#href-to-links');
+  andThen(function() {
+    assert.equal(currentURL(), '/');
+  });
+});
+
 test('clicking an anchor which has no href', function(assert) {
   visit('/');
   leftClick('#href-to-links a:contains(An anchor with no href)');
@@ -85,11 +93,15 @@ test('clicking an action works', function(assert) {
 test('clicking a href-to to should propagate events and prevent default ', function(assert) {
   visit('/');
   andThen(function() {
-    let event = Ember.$.Event('click', { which: 1 });
-    let element = findWithAssert('#href-to-links a:contains(About)');
-    element.trigger(event);
-    assert.equal(event.isDefaultPrevented(), true, 'should prevent default');
-    assert.equal(event.isPropagationStopped(), false, 'should not stop propagation');
+    let event = document.createEvent('MouseEvents');
+    event.initMouseEvent('click', true, true, window);
+    let element = findWithAssert('#href-to-links a:contains(About)')[0];
+    let ancestor = document.querySelector('#href-to-links');
+    ancestor.addEventListener('click', function(e) {
+      assert.equal(event, e, 'should not stop propagation');
+    });
+    element.dispatchEvent(event);
+    assert.equal(event.defaultPrevented, true, 'should prevent default');
   });
 });
 
