@@ -29,9 +29,10 @@ export default class {
   handle() {
     let router = this._getRouter();
     let urlWithoutRoot = this.getUrlWithoutRoot();
+    let routerMicrolib = router._routerMicrolib || router.router;
 
     router.handleURL(urlWithoutRoot);
-    router.router.updateURL(urlWithoutRoot);
+    routerMicrolib.updateURL(urlWithoutRoot);
     this.event.preventDefault();
   }
 
@@ -78,8 +79,9 @@ export default class {
       let rootUrl = this._getRootUrl();
       let isInternal = url.indexOf(rootUrl) === 0;
       let urlWithoutRoot = this.getUrlWithoutRoot();
+      let routerMicrolib = router._routerMicrolib || router.router;
 
-      didRecognize = isInternal && router.router.recognizer.recognize(urlWithoutRoot);
+      didRecognize = isInternal && routerMicrolib.recognizer.recognize(urlWithoutRoot);
     }
 
     return didRecognize;
