@@ -4,7 +4,8 @@ const { getOwner } = Em;
 
 function hrefTo(context, targetRouteName, ...rest) {
   let router = getOwner(context).lookup('router:main');
-  if (router === undefined || router.router === undefined) {
+  if (router === undefined ||
+      (router._routerMicrolib === undefined && router.router === undefined)) {
     return;
   }
 
