@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-  - "6.6.0"
+  - "7.0.0"
 
 sudo: false
 
@@ -11,7 +11,8 @@ cache:
 
 env:
   # we recommend testing LTS's and latest stable release (bonus points to beta/canary)
-  - EMBER_TRY_SCENARIO=ember-2.5
+  - EMBER_TRY_SCENARIO=ember-2.8
+  - EMBER_TRY_SCENARIO=ember-2.12
   - EMBER_TRY_SCENARIO=ember-release
   - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
