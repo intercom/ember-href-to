@@ -1,4 +1,3 @@
-import Em from 'ember';
 import HrefTo from 'ember-href-to/href-to';
 
 let hrefToClickHandler;
@@ -21,13 +20,15 @@ export default {
       if (hrefToClickHandler !== undefined) {
         document.body.removeEventListener('click', hrefToClickHandler);
       }
+
       hrefToClickHandler = function _hrefToClickHandler(e) {
         let link = e.target.tagName === 'A' ? e.target : closestLink(e.target);
         if (link) {
           let hrefTo = new HrefTo(applicationInstance, e, link);
           hrefTo.maybeHandle();
         }
-      }
+      };
+
       document.body.addEventListener('click', hrefToClickHandler);
     }
   }
