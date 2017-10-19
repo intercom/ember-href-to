@@ -1,6 +1,7 @@
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import $ from 'jquery';
+import destroyApp from '../../tests/helpers/destroy-app';
 
 function leftClick(selector) {
   triggerEvent(selector, 'click', { which: 1 });
@@ -120,5 +121,27 @@ test('[BUGFIX] it works with the `click` acceptance helper', function(assert) {
   andThen(function() {
     assert.equal(currentURL(), '/about');
     assertAnchorIsActive('#link-to-links a:contains(About)', assert);
+  });
+});
+
+test('The event listener does\'nt leak after the app is destroyed', function(assert) {
+  // Boot the app
+  visit('/');
+
+  andThen(app => {
+    // Destroy the app
+    destroyApp(app);
+    // Prevent an actual redirect if the test fails (when an error occurs
+    // inside an event handler `preventDefault()` never happens therefore
+    // causing an actual redirect).
+    let preventDefault = e => e.preventDefault();
+    document.body.addEventListener('click', preventDefault);
+
+    // Click on a link with a recognizable URL
+    let a = $('<a href="/about">').appendTo('body')[0].click();
+    assert.ok(true, 'no errors thrown due to attempting to handle a URL in a destroyed application');
+
+    $(a).remove();
+    document.body.removeEventListener('click', preventDefault);
   });
 });
