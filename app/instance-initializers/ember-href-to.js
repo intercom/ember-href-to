@@ -1,6 +1,5 @@
 import HrefTo from 'ember-href-to/href-to';
 
-let hrefToClickHandler;
 function closestLink(el) {
   if (el.closest) {
     return el.closest('a');
@@ -17,11 +16,7 @@ export default {
   initialize(applicationInstance) {
     // we only want this to run in the browser, not in fastboot
     if (typeof(FastBoot) === "undefined") {
-      if (hrefToClickHandler !== undefined) {
-        document.body.removeEventListener('click', hrefToClickHandler);
-      }
-
-      hrefToClickHandler = function _hrefToClickHandler(e) {
+      let hrefToClickHandler = function _hrefToClickHandler(e) {
         let link = e.target.tagName === 'A' ? e.target : closestLink(e.target);
         if (link) {
           let hrefTo = new HrefTo(applicationInstance, e, link);
@@ -30,6 +25,15 @@ export default {
       };
 
       document.body.addEventListener('click', hrefToClickHandler);
+
+      // Teardown on app destruction: clean up the event listener to avoid
+      // memory leaks.
+      applicationInstance.reopen({
+        willDestroy() {
+          document.body.removeEventListener('click', hrefToClickHandler);
+          return this._super(...arguments);
+        }
+      });
     }
   }
 };
