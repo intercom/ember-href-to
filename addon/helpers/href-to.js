@@ -1,6 +1,5 @@
-import Em from 'ember';
-
-const { getOwner } = Em;
+import Helper from '@ember/component/helper';
+import { getOwner } from '@ember/application';
 
 function hrefTo(context, targetRouteName, ...rest) {
   let router = getOwner(context).lookup('router:main');
@@ -25,7 +24,7 @@ function hrefTo(context, targetRouteName, ...rest) {
 
 export { hrefTo };
 
-export default Em.Helper.extend({
+export default Helper.extend({
   compute([targetRouteName, ...rest], namedArgs) {
     if(namedArgs.params) {
       return hrefTo(this, ...namedArgs.params);
