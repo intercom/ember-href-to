@@ -1,4 +1,4 @@
-import Em from 'ember';
+import LinkComponent from '@ember/routing/link-component';
 
 export default class {
 
@@ -64,7 +64,7 @@ export default class {
     let id = this.target.id;
     if (id) {
       let componentInstance = this._getContainer(this.applicationInstance).lookup('-view-registry:main')[id];
-      isLinkComponent = componentInstance && componentInstance instanceof Em.LinkComponent;
+      isLinkComponent = componentInstance && componentInstance instanceof LinkComponent;
     }
 
     return !isLinkComponent;
