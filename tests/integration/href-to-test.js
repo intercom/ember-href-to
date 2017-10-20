@@ -1,9 +1,14 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import HrefTo from 'ember-href-to/href-to';
+import { getOwner } from '@ember/application';
 
 moduleForComponent('a-link', 'Integration | HrefTo', {
-  integration: true
+  integration: true,
+
+  beforeEach() {
+    getOwner(this).lookup('router:main').setupRouter();
+  }
 });
 
 function leftClickEvent() {
