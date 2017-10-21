@@ -28,14 +28,24 @@ function getClickEventOnEl(string) {
 }
 
 test('#isUnmodifiedLeftClick should be true for left clicks', function(assert) {
-  let event = { which: 1, ctrlKey: false, metaKey: false, target: { attributes: {} } };
+  let event = {
+    which: 1,
+    ctrlKey: false,
+    metaKey: false,
+    target: { attributes: {} }
+  };
   let hrefTo = createHrefToForEvent(event);
 
   assert.ok(hrefTo.isUnmodifiedLeftClick());
 });
 
 test('#isUnmodifiedLeftClick should be false for right clicks', function(assert) {
-  let event = { which: 2, ctrlKey: false, metaKey: false, target: { attributes: {} } };
+  let event = {
+    which: 2,
+    ctrlKey: false,
+    metaKey: false,
+    target: { attributes: {} }
+  };
   let hrefTo = createHrefToForEvent(event);
 
   assert.notOk(hrefTo.isUnmodifiedLeftClick());
@@ -102,8 +112,8 @@ test('#getUrlWithoutRoot should remove the rootUrl', function(assert) {
   let hrefTo = createHrefToForEvent(event);
 
   hrefTo._getRootUrl = () => '/a/';
-  assert.equal(hrefTo.getUrlWithoutRoot(), '/inbox', 'the url shouldn\'t include the rootUrl');
+  assert.equal(hrefTo.getUrlWithoutRoot(), '/inbox', "the url shouldn't include the rootUrl");
 
   hrefTo._getRootUrl = () => '/';
-  assert.equal(hrefTo.getUrlWithoutRoot(), '/a/inbox', 'the url shouldn\'t include the rootUrl');
+  assert.equal(hrefTo.getUrlWithoutRoot(), '/a/inbox', "the url shouldn't include the rootUrl");
 });

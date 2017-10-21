@@ -3,8 +3,10 @@ import { getOwner } from '@ember/application';
 
 function hrefTo(context, targetRouteName, ...rest) {
   let router = getOwner(context).lookup('router:main');
-  if (router === undefined ||
-      (router._routerMicrolib === undefined && router.router === undefined)) {
+  if (
+    router === undefined ||
+    (router._routerMicrolib === undefined && router.router === undefined)
+  ) {
     return;
   }
 
@@ -26,7 +28,7 @@ export { hrefTo };
 
 export default Helper.extend({
   compute([targetRouteName, ...rest], namedArgs) {
-    if(namedArgs.params) {
+    if (namedArgs.params) {
       return hrefTo(this, ...namedArgs.params);
     } else {
       return hrefTo(this, targetRouteName, ...rest);
