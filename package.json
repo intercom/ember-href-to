@@ -37,7 +37,8 @@
     "ember-load-initializers": "^1.0.0",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.16.0",
-    "loader.js": "^4.6.0"
+    "loader.js": "^4.6.0",
+    "prettier": "1.7.4"
   },
   "keywords": [
     "ember-addon"
