@@ -10,7 +10,9 @@ function leftClickEvent() {
   return { which: 1, ctrlKey: false, metaKey: false };
 }
 
-test(`#isNotLinkComponent should be true if the event target is not an instance of Em.LinkComponent`, function(assert) {
+test(`#isNotLinkComponent should be true if the event target is not an instance of Em.LinkComponent`, function(
+  assert
+) {
   this.render(hbs`{{not-a-link class='not-a-link'}}`);
 
   let event = leftClickEvent();
@@ -20,7 +22,9 @@ test(`#isNotLinkComponent should be true if the event target is not an instance 
   assert.ok(hrefTo.isNotLinkComponent());
 });
 
-test(`#isNotLinkComponent should be false if the event target is an instance of Em.LinkComponent`, function(assert) {
+test(`#isNotLinkComponent should be false if the event target is an instance of Em.LinkComponent`, function(
+  assert
+) {
   this.render(hbs`{{a-link 'about' 'about' class='a-link'}}`);
 
   let event = leftClickEvent();

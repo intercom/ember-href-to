@@ -47,7 +47,7 @@ test('clicking a href-to with an inner element', function(assert) {
   });
 });
 
-test('it doesn\'t affect clicking on elements outside links', function(assert) {
+test("it doesn't affect clicking on elements outside links", function(assert) {
   visit('/');
   leftClick('#href-to-links');
   andThen(function() {
@@ -124,7 +124,7 @@ test('[BUGFIX] it works with the `click` acceptance helper', function(assert) {
   });
 });
 
-test('The event listener does\'nt leak after the app is destroyed', function(assert) {
+test("The event listener does'nt leak after the app is destroyed", function(assert) {
   // Boot the app
   visit('/');
 
@@ -138,8 +138,13 @@ test('The event listener does\'nt leak after the app is destroyed', function(ass
     document.body.addEventListener('click', preventDefault);
 
     // Click on a link with a recognizable URL
-    let a = $('<a href="/about">').appendTo('body')[0].click();
-    assert.ok(true, 'no errors thrown due to attempting to handle a URL in a destroyed application');
+    let a = $('<a href="/about">')
+      .appendTo('body')[0]
+      .click();
+    assert.ok(
+      true,
+      'no errors thrown due to attempting to handle a URL in a destroyed application'
+    );
 
     $(a).remove();
     document.body.removeEventListener('click', preventDefault);

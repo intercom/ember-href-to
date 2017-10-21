@@ -1,7 +1,6 @@
 import LinkComponent from '@ember/routing/link-component';
 
 export default class {
-
   constructor(applicationInstance, event, target = event.target) {
     this.applicationInstance = applicationInstance;
     this.event = event;
@@ -17,13 +16,15 @@ export default class {
   }
 
   shouldHandle() {
-    return this.isUnmodifiedLeftClick() &&
+    return (
+      this.isUnmodifiedLeftClick() &&
       this.isNotIgnored() &&
       this.hasNoTargetBlank() &&
       this.hasNoActionHelper() &&
       this.hasNoDownload() &&
       this.isNotLinkComponent() &&
-      this.recognizeUrl();
+      this.recognizeUrl()
+    );
   }
 
   handle() {
@@ -63,7 +64,9 @@ export default class {
     let isLinkComponent = false;
     let id = this.target.id;
     if (id) {
-      let componentInstance = this._getContainer(this.applicationInstance).lookup('-view-registry:main')[id];
+      let componentInstance = this._getContainer(this.applicationInstance).lookup(
+        '-view-registry:main'
+      )[id];
       isLinkComponent = componentInstance && componentInstance instanceof LinkComponent;
     }
 
@@ -98,7 +101,10 @@ export default class {
   }
 
   _getContainer() {
-    return 'lookup' in this.applicationInstance ? this.applicationInstance : this.applicationInstance.container;
+    if (this.applicationInstance.lookup) {
+      return this.applicationInstance;
+    }
+    return this.applicationInstance.container;
   }
 
   _getRootUrl() {
