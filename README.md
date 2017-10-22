@@ -18,7 +18,7 @@ This is an Ember CLI addon, to install:
 
 ## Usage Instructions
 
-`{{href-to}}` has the same interface as [`{{link-to}}`](http://guides.emberjs.com/v1.12.0/templates/links/), you can use it to link to static and dynamic routes in your ember application:
+`{{href-to}}` has the same interface as [`{{link-to}}`](https://guides.emberjs.com/v2.16.0/templates/links/), you can use it to link to static and dynamic routes in your ember application:
 
 ```html
 <a href="{{href-to 'index'}}">Go Home</a>
