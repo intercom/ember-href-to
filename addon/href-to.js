@@ -28,11 +28,7 @@ export default class {
 
   handle() {
     let router = this._getRouter();
-    let urlWithoutRoot = this.getUrlWithoutRoot();
-    let routerMicrolib = router._routerMicrolib || router.router;
-
-    router.handleURL(urlWithoutRoot);
-    routerMicrolib.updateURL(urlWithoutRoot);
+    router.transitionTo(this.url);
     this.event.preventDefault();
   }
 
@@ -63,7 +59,7 @@ export default class {
     let isLinkComponent = false;
     let id = this.target.id;
     if (id) {
-      let componentInstance = this._getContainer(this.applicationInstance).lookup('-view-registry:main')[id];
+      let componentInstance = this.applicationInstance.lookup('-view-registry:main')[id];
       isLinkComponent = componentInstance && componentInstance instanceof LinkComponent;
     }
 
@@ -75,11 +71,11 @@ export default class {
     let didRecognize = false;
 
     if (url) {
-      let router = this._getContainer().lookup('router:main');
+      let router = this._getRouter();
       let rootUrl = this._getRootUrl();
       let isInternal = url.indexOf(rootUrl) === 0;
       let urlWithoutRoot = this.getUrlWithoutRoot();
-      let routerMicrolib = router._routerMicrolib || router.router;
+      let routerMicrolib = router._router._routerMicrolib || router._router.router;
 
       didRecognize = isInternal && routerMicrolib.recognizer.recognize(urlWithoutRoot);
     }
@@ -94,16 +90,12 @@ export default class {
   }
 
   _getRouter() {
-    return this._getContainer().lookup('router:main');
-  }
-
-  _getContainer() {
-    return 'lookup' in this.applicationInstance ? this.applicationInstance : this.applicationInstance.container;
+    return this.applicationInstance.lookup('service:router');
   }
 
   _getRootUrl() {
     let router = this._getRouter();
-    let rootURL = router.rootURL;
+    let rootURL = router.get('rootURL');
 
     if (rootURL.charAt(rootURL.length - 1) !== '/') {
       rootURL = rootURL + '/';

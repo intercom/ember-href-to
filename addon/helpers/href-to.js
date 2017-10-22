@@ -2,9 +2,9 @@ import Helper from '@ember/component/helper';
 import { getOwner } from '@ember/application';
 
 function hrefTo(context, targetRouteName, ...rest) {
-  let router = getOwner(context).lookup('router:main');
-  if (router === undefined ||
-      (router._routerMicrolib === undefined && router.router === undefined)) {
+  let router = getOwner(context).lookup('service:router');
+
+  if(router === undefined) {
     return;
   }
 
@@ -19,7 +19,7 @@ function hrefTo(context, targetRouteName, ...rest) {
   args.push.apply(args, rest);
   args.push({ queryParams: queryParams.values });
 
-  return router.generate.apply(router, args);
+  return router.urlFor.apply(router, args);
 }
 
 export { hrefTo };

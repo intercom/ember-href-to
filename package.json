@@ -43,7 +43,8 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-cli-babel": "^6.8.2"
+    "ember-cli-babel": "^6.8.2",
+    "ember-router-service-polyfill": "^1.0.2"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
