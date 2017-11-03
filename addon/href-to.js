@@ -28,7 +28,7 @@ export default class {
 
   handle() {
     let router = this._getRouter();
-    router.transitionTo(this.url);
+    router.transitionTo(this.getUrlWithoutRoot());
     this.event.preventDefault();
   }
 
