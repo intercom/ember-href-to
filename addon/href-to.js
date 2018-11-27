@@ -28,7 +28,14 @@ export default class {
 
   handle() {
     let router = this._getRouter();
-    router.transitionTo(this.getUrlWithoutRoot());
+    let url = this.getUrlWithoutRoot();
+
+    if (this.isNotReplaceWithLink()) {
+      router.transitionTo(url);
+    } else {
+      router.replaceWith(url);
+    }
+
     this.event.preventDefault();
   }
 
@@ -41,6 +48,10 @@ export default class {
   hasNoTargetBlank() {
     let attr = this.target.attributes.target;
     return !attr || attr.value !== '_blank';
+  }
+
+  isNotReplaceWithLink() {
+    return !this.target.attributes["data-href-to-replace"];
   }
 
   isNotIgnored() {

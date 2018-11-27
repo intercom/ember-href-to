@@ -41,6 +41,20 @@ test('#isUnmodifiedLeftClick should be false for right clicks', function(assert)
   assert.notOk(hrefTo.isUnmodifiedLeftClick());
 });
 
+test('#isNotReplaceWithLink should be false if [data-href-to-replace] is present', function(assert) {
+  let event = getClickEventOnEl("<a href='' data-href-to-replace>");
+  let hrefTo = createHrefToForEvent(event);
+
+  assert.notOk(hrefTo.isNotReplaceWithLink());
+});
+
+test('#isNotReplaceWithLink should be true if [data-href-to-replace] is not present', function(assert) {
+  let event = getClickEventOnEl("<a href=''>");
+  let hrefTo = createHrefToForEvent(event);
+
+  assert.ok(hrefTo.isNotReplaceWithLink());
+});
+
 test('#isNotIgnored should be false if [data-href-to-ignore] is present', function(assert) {
   let event = getClickEventOnEl("<a href='' data-href-to-ignore>");
   let hrefTo = createHrefToForEvent(event);
