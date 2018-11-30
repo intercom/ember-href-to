@@ -1,6 +1,6 @@
 {
   "name": "ember-href-to",
-  "version": "1.15.0",
+  "version": "2.0.0",
   "description": "A lightweight alternative to `{{link-to}}`",
   "directories": {
     "doc": "doc",
