@@ -24,6 +24,8 @@ function getParamsForGenerateURL(params) {
   ];
 }
 
+export { hrefTo }
+
 export default Helper.extend({
   compute(params, namedArgs) {
     if (namedArgs.params) {
