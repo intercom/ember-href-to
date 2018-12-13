@@ -93,9 +93,26 @@ export default class {
     return this.applicationInstance.lookup('service:router');
   }
 
-  _getRootUrl() {
+  _getLocationImplementation() {
     let router = this._getRouter();
-    let rootURL = router.get('rootURL');
+
+    return router.get('location.implementation');
+  }
+
+  _getRouterRootUrl() {
+    let router = this._getRouter();
+
+    return router.get('rootURL');
+  }
+
+  _getRootUrl() {
+    let locationType = this._getLocationImplementation();
+
+    if (locationType === 'hash') {
+      return '#/';
+    }
+
+    let rootURL = this._getRouterRootUrl();
 
     if (rootURL.charAt(rootURL.length - 1) !== '/') {
       rootURL = rootURL + '/';

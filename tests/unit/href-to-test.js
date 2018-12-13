@@ -107,3 +107,33 @@ test('#getUrlWithoutRoot should remove the rootUrl', function(assert) {
   hrefTo._getRootUrl = () => '/';
   assert.equal(hrefTo.getUrlWithoutRoot(), '/a/inbox', 'the url shouldn\'t include the rootUrl');
 });
+
+module('#_getRootUrl', function() {
+  test('it builds auto location roots correctly', function(assert) {
+    let event = getClickEventOnEl("<a href='/a/inbox'>");
+    let hrefTo = createHrefToForEvent(event);
+
+    hrefTo._getLocationImplementation = () => 'auto';
+    hrefTo._getRouterRootUrl = () => '/';
+
+    assert.equal(hrefTo._getRootUrl(), '/');
+
+    hrefTo._getRouterRootUrl = () => '/app';
+
+    assert.equal(hrefTo._getRootUrl(), '/app/');
+  });
+
+  test('it builds hash location roots correctly', function(assert) {
+    let event = getClickEventOnEl("<a href='/a/inbox'>");
+    let hrefTo = createHrefToForEvent(event);
+
+    hrefTo._getLocationImplementation = () => 'hash';
+    hrefTo._getRouterRootUrl = () => '/';
+
+    assert.equal(hrefTo._getRootUrl(), '#/');
+
+    hrefTo._getRouterRootUrl = () => '/app';
+
+    assert.equal(hrefTo._getRootUrl(), '#/');
+  });
+});
