@@ -9,7 +9,8 @@ function createHrefToForEvent(event) {
   let mockApplicationInstance = {
     lookup() {
       return viewRegistry;
-    }
+    },
+    resolveRegistration() {}
   };
 
   return new HrefTo(mockApplicationInstance, event);

@@ -4,6 +4,13 @@ export default class {
 
   constructor(applicationInstance, event, target = event.target) {
     this.applicationInstance = applicationInstance;
+
+    // https://www.emberjs.com/deprecations/v2.x/#toc_ember-application-registry-ember-applicationinstance-registry
+    let env = applicationInstance.resolveRegistration ?
+        applicationInstance.resolveRegistration('config:environment') :
+        applicationInstance.registry.resolve('config:environment');
+
+    this.options = env && env['ember-href-to'] || {};
     this.event = event;
     this.target = target;
     let hrefAttr = this.target.attributes.href;
@@ -68,19 +75,31 @@ export default class {
 
   recognizeUrl() {
     let url = this.url;
-    let didRecognize = false;
-
-    if (url) {
-      let router = this._getRouter();
-      let rootUrl = this._getRootUrl();
-      let isInternal = url.indexOf(rootUrl) === 0;
-      let urlWithoutRoot = this.getUrlWithoutRoot();
-      let routerMicrolib = router._router._routerMicrolib || router._router.router;
-
-      didRecognize = isInternal && routerMicrolib.recognizer.recognize(urlWithoutRoot);
+    if (!url) {
+      return false;
     }
 
-    return didRecognize;
+    let rootUrl = this._getRootUrl();
+    let isInternal = url.indexOf(rootUrl) === 0;
+    if (!isInternal) {
+      return false;
+    }
+
+    let router = this._getRouter();
+    let urlWithoutRoot = this.getUrlWithoutRoot();
+    let routerMicrolib = router._router._routerMicrolib || router._router.router;
+    let recognizeResults = routerMicrolib.recognizer.recognize(urlWithoutRoot);
+    if (!recognizeResults) {
+      return false;
+    }
+
+    if (this.options.ignore) {
+      let routeName = recognizeResults[recognizeResults.length - 1].handler;
+      let notIgnored = this.options.ignore.indexOf(routeName) === -1;
+      return notIgnored;
+    }
+
+    return true;
   }
 
   getUrlWithoutRoot() {

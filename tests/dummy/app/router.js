@@ -12,6 +12,7 @@ Router.map(function() {
     this.route('first');
     this.route('second');
   });
+  this.route('catchall', { path: "/*" });
 });
 
 export default Router;
