@@ -23,3 +23,6 @@ Section: {{section}}
 <br />
 Action: <a href="#" {{action "increment"}}>Increment</a> <span id="count">{{count}}</span>
 <br />
+<br />
+Ignore catchall route: <a href="/about/will-not-match">Will Not Match</a>
+<br />Use <code>'ember-href-to': { ignore: ['catchall'] }</code> in environment.js.

@@ -145,3 +145,18 @@ test('The event listener does\'nt leak after the app is destroyed', function(ass
     document.body.removeEventListener('click', preventDefault);
   });
 });
+
+test('ignoring catchall route using "ember-href-to.ignore" ENV option', function(assert) {
+  visit('/about');
+
+  let preventDefault = e => e.preventDefault();
+  document.body.addEventListener('click', preventDefault);
+
+  click('a:contains(Will Not Match)');
+
+  andThen(function() {
+    document.body.removeEventListener('click', preventDefault);
+
+    assert.equal(currentURL(), '/about');
+  });
+});
