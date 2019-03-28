@@ -3,28 +3,28 @@
 
 \{{link-to}}:
 <div id="link-to-links">
-  [{{#link-to 'index'}}Index{{/link-to}}]
-  [{{#link-to 'about'}}About{{/link-to}}]
-  [{{#link-to 'pages.first'}}First Page{{/link-to}}]
-  [{{#link-to 'pages.second'}}Second Page{{/link-to}}]
+  [{{#link-to "index"}}Index{{/link-to}}]
+  [{{#link-to "about"}}About{{/link-to}}]
+  [{{#link-to "pages.first"}}First Page{{/link-to}}]
+  [{{#link-to "pages.second"}}Second Page{{/link-to}}]
   [{{#link-to params=dynamicParams}}Second Page (with dynamic params){{/link-to}}]
 </div>
-<br />
+<br>
 
 \{{href-to}}:
 <div id="href-to-links">
-  [<a href="{{href-to 'index'}}">Index</a>]
-  [<a href="{{href-to 'about'}}">About</a>]
-  [<a href="{{href-to 'pages.first'}}">First Page</a>]
-  [<a href="{{href-to 'pages.second'}}">Second Page</a>]
-  [<a href="{{href-to params=dynamicParams}}">Second Page (with dynamic params)</a>]
-  [<a href="{{href-to 'pages.second'}}"><span id="inner-span">Second Page (with inner span)</span></a>]
+  [<a href={{href-to "index"}}>Index</a>]
+  [<a href={{href-to "about"}}>About</a>]
+  [<a href={{href-to "pages.first"}}>First Page</a>]
+  [<a href={{href-to "pages.second"}}>Second Page</a>]
+  [<a href={{href-to params=dynamicParams}}>Second Page (with dynamic params)</a>]
+  [<a href={{href-to "pages.second"}}><span id="inner-span">Second Page (with inner span)</span></a>]
   [<a>An anchor with no href</a>]
   [<a href="http://localhost:4200/about">An anchor with an absolute href</a>]
   [<a href="/about" download>An anchor with a download attribute</a>]
-  [<a href="/about" target="_blank">An anchor with a target blank</a>]
-  [{{#link-button href=(href-to 'about')}}A component with a bound href{{/link-button}}]
+  [<a href="/about" target="_blank" rel="noopener">An anchor with a target blank</a>]
+  [{{#link-button href=(href-to "about")}}A component with a bound href{{/link-button}}]
 </div>
-<hr />
+<hr>
 
 {{outlet}}

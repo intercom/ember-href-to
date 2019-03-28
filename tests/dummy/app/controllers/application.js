@@ -1,5 +1,10 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-  dynamicParams: ['pages.second']
+  dynamicParams: undefined,
+  
+  init() {
+    this._super(...arguments);
+    this.set('dynamicParams', ['pages.second']);
+  },
 });
