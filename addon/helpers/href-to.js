@@ -1,8 +1,8 @@
-import Helper from '@ember/component/helper';
-import { getOwner } from '@ember/application';
+import Helper from "@ember/component/helper";
+import { getOwner } from "@ember/application";
 
-function hrefTo(context, params) {
-  let routing = getOwner(context).lookup('service:-routing');
+export function hrefTo(context, params) {
+  let routing = getOwner(context).lookup("service:-routing");
   return routing.generateURL(...getParamsForGenerateURL(params));
 }
 
@@ -17,11 +17,7 @@ function getParamsForGenerateURL(params) {
     queryParams = {};
   }
   let models = params; // the remainder are the models
-  return [
-    targetRouteName,
-    models,
-    queryParams
-  ];
+  return [targetRouteName, models, queryParams];
 }
 
 export default Helper.extend({
