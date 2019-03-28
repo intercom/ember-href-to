@@ -1,5 +1,6 @@
 import { module, test } from 'qunit';
 import HrefTo from 'ember-href-to/href-to';
+import $ from 'jquery';
 
 module('Unit | HrefTo');
 
