@@ -1,5 +1,6 @@
 import { module, test } from 'qunit';
 import HrefTo from 'ember-href-to/href-to';
+import { hrefTo } from 'ember-href-to/helpers/href-to';
 import $ from 'jquery';
 
 module('Unit | HrefTo');
@@ -108,3 +109,7 @@ test('#getUrlWithoutRoot should remove the rootUrl', function(assert) {
   hrefTo._getRootUrl = () => '/';
   assert.equal(hrefTo.getUrlWithoutRoot(), '/a/inbox', 'the url shouldn\'t include the rootUrl');
 });
+
+test('hrefTo helper can be exported', function(assert) {
+  assert.ok(hrefTo);
+})
