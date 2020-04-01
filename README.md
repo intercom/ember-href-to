@@ -22,7 +22,7 @@ This is an Ember CLI addon, to install:
 
 Once installed, this add-on will automatically intercept all `<a>` tags. Once clicked, if the href url is recognized as a route found within the current Ember application, it will perform an Ember transition without a page refresh. If not, it will link to the url as a normal anchor tag.
 
-You can use the `{{href-to}}` helper, which has the same interface as [`{{link-to}}`](https://guides.emberjs.com/v2.16.0/templates/links/), to link to static and dynamic routes in your ember application:
+You can use the `{{href-to}}` helper, which has the same interface as [`{{link-to}}`](https://guides.emberjs.com/release/routing/linking-between-routes/), to link to static and dynamic routes in your ember application:
 
 ```html
 <a href="{{href-to 'index'}}">Go Home</a>
