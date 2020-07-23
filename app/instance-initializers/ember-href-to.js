@@ -18,7 +18,7 @@ export default {
     if (typeof(FastBoot) === "undefined") {
       let hrefToClickHandler = function _hrefToClickHandler(e) {
         let link = e.target.tagName === 'A' ? e.target : closestLink(e.target);
-        if (link) {
+        if (link && document.body.contains(link)) {
           let hrefTo = new HrefTo(applicationInstance, e, link);
           hrefTo.maybeHandle();
         }
