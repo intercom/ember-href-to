@@ -1,8 +1,7 @@
 import Helper from "@ember/component/helper";
 import { getOwner } from "@ember/application";
 
-export function hrefTo(context, params) {
-  let routing = getOwner(context).lookup("service:-routing");
+export function hrefTo(routing, params) {
   return routing.generateURL(...getParamsForGenerateURL(params));
 }
 
@@ -21,11 +20,24 @@ function getParamsForGenerateURL(params) {
 }
 
 export default class HrefToHelper extends Helper {
+  get routing() {
+    return getOwner(this).lookup("service:-routing");
+  }
+
+  get router() {
+    return getOwner(this).lookup("service:router");
+  }
+
+  init() {
+    super.init();
+    this.router.on('routeDidChange', this.recompute.bind(this));
+  }
+
   compute(params, namedArgs) {
     if (namedArgs.params) {
-      return hrefTo(this, namedArgs.params);
+      return hrefTo(this.routing, namedArgs.params);
     } else {
-      return hrefTo(this, params);
+      return hrefTo(this.routing, params);
     }
   }
 }

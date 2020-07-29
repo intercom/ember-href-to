@@ -1,6 +1,7 @@
 import $ from 'jquery';
-import { click, currentURL, visit } from '@ember/test-helpers';
+import { click, currentURL, visit, settled } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
+import { run } from '@ember/runloop';
 
 import { module, test } from 'qunit';
 
@@ -10,6 +11,23 @@ function assertAnchorIsActive(selector, assert) {
 
 module('Acceptance | href to', function(hooks) {
   setupApplicationTest(hooks);
+
+  test('href renders and updates based on router.currentState', async function (assert) {
+    await visit('/about');
+
+    assert.equal($('#link-to-links a:contains(About)').attr('href'), '/about')
+    assert.equal($('#href-to-links a:contains(About)').attr('href'), '/about')
+
+    const aboutController = this.owner.lookup('controller:about');
+
+    run(function() {
+      aboutController.set('section', 'two');
+    });
+
+    await settled();
+    assert.equal($('#link-to-links a:contains(About)').attr('href'), '/about?section=two')
+    assert.equal($('#href-to-links a:contains(About)').attr('href'), '/about?section=two')
+  });
 
   test('clicking a simple link-to', async function(assert) {
     await visit('/');
