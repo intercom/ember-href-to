@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import destroyApp from '../../tests/helpers/destroy-app';
 import { click, currentURL, visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
@@ -18,45 +17,45 @@ module('Acceptance | href to', function(hooks) {
     assert.equal(currentURL(), '/about');
     assertAnchorIsActive('#link-to-links a:contains(About)', assert);
   });
-  
+
   test('clicking a simple href-to', async function(assert) {
     await visit('/');
     await click($('#href-to-links a:contains(About)')[0]);
     assert.equal(currentURL(), '/about');
     assertAnchorIsActive('#link-to-links a:contains(About)', assert);
   });
-  
+
   test('clicking a href-to with a params argument', async function(assert) {
     await visit('/');
     await click($('#href-to-links a:contains(Second Page (with dynamic params))')[0]);
     assert.equal(currentURL(), '/pages/second');
   });
-  
+
   test('clicking a href-to with an inner element', async function(assert) {
     await visit('/');
     await click('#inner-span');
     assert.equal(currentURL(), '/pages/second');
   });
-  
+
   test('it doesn\'t affect clicking on elements outside links', async function(assert) {
     await visit('/');
     await click('#href-to-links');
     assert.equal(currentURL(), '/');
   });
-  
+
   test('clicking an anchor which has no href', async function(assert) {
     await visit('/');
     await click($('#href-to-links a:contains(An anchor with no href)')[0]);
     assert.equal(currentURL(), '/');
   });
-  
+
   test('clicking a href-to to a nested route', async function(assert) {
     await visit('/');
     await click($('#href-to-links a:contains(Second Page)')[0]);
     assert.equal(currentURL(), '/pages/second');
     assertAnchorIsActive('#link-to-links a:contains(Second Page)', assert);
   });
-  
+
   test('clicking a href-to with query params', async function(assert) {
     await visit('/');
     await click($('#href-to-links a:contains(About)')[0]);
@@ -65,13 +64,13 @@ module('Acceptance | href to', function(hooks) {
     assertAnchorIsActive('#link-to-links a:contains(About)', assert);
     assertAnchorIsActive('#about-link-to-links a:contains(Two)', assert);
   });
-  
+
   test('clicking an action works', async function(assert) {
     await visit('/about');
     await click($('a:contains(Increment)')[0]);
     assert.equal($('#count').text(), '1');
   });
-  
+
   test('clicking a href-to to should propagate events and prevent default ', async function(assert) {
     await visit('/');
 
@@ -85,40 +84,18 @@ module('Acceptance | href to', function(hooks) {
     element.dispatchEvent(event);
     assert.equal(event.defaultPrevented, true, 'should prevent default');
   });
-  
+
   test('clicking an ember component with href-to should work', async function(assert) {
     await visit('/');
     await click($('#href-to-links a:contains(A component with a bound href)')[0]);
-  
+
     assert.equal(currentURL(), '/about');
   });
-  
+
   test('[BUGFIX] it works with the `click` acceptance helper', async function(assert) {
     await visit('/');
     await click($('#href-to-links a:contains(About)')[0]);
     assert.equal(currentURL(), '/about');
     assertAnchorIsActive('#link-to-links a:contains(About)', assert);
   });
-  
-  test('The event listener does\'nt leak after the app is destroyed', async function(assert) {
-    // Boot the app
-    await visit('/');
-  
-    // Destroy the app
-    let app = this.owner.application;
-    destroyApp(app);
-    // Prevent an actual redirect if the test fails (when an error occurs
-    // inside an event handler `preventDefault()` never happens therefore
-    // causing an actual redirect).
-    let preventDefault = e => e.preventDefault();
-    document.body.addEventListener('click', preventDefault);
-
-    // Click on a link with a recognizable URL
-    let a = $('<a href="/about">').appendTo('body')[0].click();
-    assert.ok(true, 'no errors thrown due to attempting to handle a URL in a destroyed application');
-
-    $(a).remove();
-    document.body.removeEventListener('click', preventDefault);
-  });  
 });
-
