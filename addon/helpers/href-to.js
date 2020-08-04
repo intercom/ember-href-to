@@ -20,7 +20,7 @@ function getParamsForGenerateURL(params) {
   return [targetRouteName, models, queryParams];
 }
 
-export default Helper.extend({
+export default class HrefToHelper extends Helper {
   compute(params, namedArgs) {
     if (namedArgs.params) {
       return hrefTo(this, namedArgs.params);
@@ -28,4 +28,4 @@ export default Helper.extend({
       return hrefTo(this, params);
     }
   }
-});
+}

@@ -1,36 +1,37 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { render, find } from '@ember/test-helpers';
 import HrefTo from 'ember-href-to/href-to';
-import { getOwner } from '@ember/application';
-
-moduleForComponent('a-link', 'Integration | HrefTo', {
-  integration: true,
-
-  beforeEach() {
-    getOwner(this).lookup('router:main').setupRouter();
-  }
-});
 
 function leftClickEvent() {
   return { which: 1, ctrlKey: false, metaKey: false };
 }
 
-test(`#isNotLinkComponent should be true if the event target is not an instance of Em.LinkComponent`, function(assert) {
-  this.render(hbs`{{not-a-link class='not-a-link'}}`);
+module('Integration | HrefTo', function(hooks) {
+  setupRenderingTest(hooks);
 
-  let event = leftClickEvent();
-  event.target = this.$('.not-a-link')[0];
+  hooks.beforeEach(function() {
+    this.owner.lookup('router:main').setupRouter();
+  })
 
-  let hrefTo = new HrefTo(this.container, event);
-  assert.ok(hrefTo.isNotLinkComponent());
-});
+  test(`#isNotLinkComponent should be true if the event target is not an instance of Em.LinkComponent`, async function(assert) {
+    await render(hbs`{{not-a-link class='not-a-link'}}`);
 
-test(`#isNotLinkComponent should be false if the event target is an instance of Em.LinkComponent`, function(assert) {
-  this.render(hbs`{{a-link 'about' 'about' class='a-link'}}`);
+    let event = leftClickEvent();
+    event.target = find('.not-a-link');
 
-  let event = leftClickEvent();
-  event.target = this.$('.a-link')[0];
+    let hrefTo = new HrefTo(this.owner, event);
+    assert.ok(hrefTo.isNotLinkComponent());
+  });
 
-  let hrefTo = new HrefTo(this.container, event);
-  assert.notOk(hrefTo.isNotLinkComponent());
+  test(`#isNotLinkComponent should be false if the event target is an instance of Em.LinkComponent`, async function(assert) {
+    await render(hbs`{{a-link 'about' 'about' class='a-link'}}`);
+
+    let event = leftClickEvent();
+    event.target = find('.a-link');
+
+    let hrefTo = new HrefTo(this.owner, event);
+    assert.notOk(hrefTo.isNotLinkComponent());
+  });
 });

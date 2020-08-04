@@ -19,10 +19,11 @@
   [<a href={{href-to "pages.second"}}>Second Page</a>]
   [<a href={{href-to params=dynamicParams}}>Second Page (with dynamic params)</a>]
   [<a href={{href-to "pages.second"}}><span id="inner-span">Second Page (with inner span)</span></a>]
+  {{!-- template-lint-disable link-href-attributes --}}
   [<a>An anchor with no href</a>]
   [<a href="http://localhost:4200/about">An anchor with an absolute href</a>]
   [<a href="/about" download>An anchor with a download attribute</a>]
-  [<a href="/about" target="_blank" rel="noopener">An anchor with a target blank</a>]
+  [<a href="/about" target="_blank" rel="noopener noreferrer">An anchor with a target blank</a>]
   [{{#link-button href=(href-to "about")}}A component with a bound href{{/link-button}}]
 </div>
 <hr>

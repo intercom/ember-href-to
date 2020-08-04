@@ -86,7 +86,7 @@ test('#hasNoDownload should be true if [download] is not present', function(asse
 });
 
 test('#hasNoTargetBlank should be false if [target="_blank"] is present', function(assert) {
-  let event = getClickEventOnEl("<a href='' target='_blank'>");
+  let event = getClickEventOnEl("<a href='' target='_blank' rel='noopener noreferrer'>");
   let hrefTo = createHrefToForEvent(event);
 
   assert.notOk(hrefTo.hasNoTargetBlank());

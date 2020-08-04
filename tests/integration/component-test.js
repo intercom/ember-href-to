@@ -1,12 +1,14 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { render, find } from '@ember/test-helpers';
 
-moduleForComponent('component-with-a-link', 'Integration | Component | component-with-a-link', {
-  integration: true,
-});
+module('Integration | Component | component-with-a-link', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('should change colors', function(assert) {
-  this.render(hbs`{{component-with-a-link}}`);
+  test('should change colors', async function(assert) {
+    await render(hbs`{{component-with-a-link}}`);
 
-  assert.strictEqual(this.$('a').length, 1, 'the link is rendered');
+    assert.ok(find('a'), 'the link is rendered');
+  });
 });
