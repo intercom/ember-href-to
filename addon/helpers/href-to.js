@@ -2,7 +2,17 @@ import Helper from "@ember/component/helper";
 import { getOwner } from "@ember/application";
 
 export function hrefTo(context, params) {
-  let routing = getOwner(context).lookup("service:-routing");
+  let owner = getOwner(context);
+  let ownerIsEngine = Boolean(owner.mountPoint)
+
+  if (ownerIsEngine && targetRouteName !== 'application') {
+    targetRouteName = `${owner.mountPoint}.${targetRouteName}`;
+  }
+  return getHrefFromOwner(owner, params);
+}
+
+export function getHrefFromOwner(owner, params) {
+  let routing = owner.lookup("service:-routing");
   return routing.generateURL(...getParamsForGenerateURL(params));
 }
 
