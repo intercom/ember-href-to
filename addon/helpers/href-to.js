@@ -30,7 +30,10 @@ export default class HrefToHelper extends Helper {
 
   init() {
     super.init();
-    this.router.on('routeDidChange', this.recompute.bind(this));
+
+    if (this.router && this.router.on) { // skip if the router service is mocked
+      this.router.on("routeDidChange", this.recompute.bind(this));
+    }
   }
 
   compute(params, namedArgs) {
