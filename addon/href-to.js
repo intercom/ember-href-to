@@ -1,4 +1,4 @@
-import LinkComponent from '@ember/routing/link-component';
+import { LinkComponent } from '@ember/legacy-built-in-components';
 
 export default class {
 
