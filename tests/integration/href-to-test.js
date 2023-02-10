@@ -34,4 +34,14 @@ module('Integration | HrefTo', function(hooks) {
     let hrefTo = new HrefTo(this.owner, event);
     assert.notOk(hrefTo.isNotLinkComponent());
   });
+
+  test(`#isNotLinkComponent should be false if the event target is an instance of Em.LinkComponent (subclass)`, async function(assert) {
+    await render(hbs`{{a-subclass-link 'about' 'about' class='a-link'}}`);
+
+    let event = leftClickEvent();
+    event.target = find('.a-link');
+
+    let hrefTo = new HrefTo(this.owner, event);
+    assert.notOk(hrefTo.isNotLinkComponent());
+  });
 });

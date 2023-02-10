@@ -1,5 +1,3 @@
-import { LinkComponent } from '@ember/legacy-built-in-components';
-
 export default class {
 
   constructor(applicationInstance, event, target = event.target) {
@@ -60,7 +58,7 @@ export default class {
     let id = this.target.id;
     if (id) {
       let componentInstance = this.applicationInstance.lookup('-view-registry:main')[id];
-      isLinkComponent = componentInstance && componentInstance instanceof LinkComponent;
+      isLinkComponent = componentInstance && componentInstance.constructor.superclass.toString() === '@ember/routing/link-component';
     }
 
     return !isLinkComponent;
