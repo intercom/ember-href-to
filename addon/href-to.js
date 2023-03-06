@@ -60,7 +60,7 @@ export default class {
     let id = this.target.id;
     if (id) {
       let componentInstance = this.applicationInstance.lookup('-view-registry:main')[id];
-      isLinkComponent = componentInstance && componentInstance instanceof LinkComponent;
+      isLinkComponent = componentInstance && (componentInstance instanceof LinkComponent || componentInstance.constructor.toString() === "@ember/routing/link-component");
     }
 
     return !isLinkComponent;

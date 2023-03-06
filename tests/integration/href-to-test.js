@@ -34,4 +34,14 @@ module('Integration | HrefTo', function(hooks) {
     let hrefTo = new HrefTo(this.owner, event);
     assert.notOk(hrefTo.isNotLinkComponent());
   });
+
+  test(`#isNotLinkComponent should be false if the event target is an instance of Glimmer's LinkComponent`, async function(assert) {
+    await render(hbs`<LinkTo @route='about' class='a-glimmer-link'>about</LinkTo>}}`);
+
+    let event = leftClickEvent();
+    event.target = find(".a-glimmer-link");
+
+    let hrefTo = new HrefTo(this.owner, event);
+    assert.notOk(hrefTo.isNotLinkComponent());
+  });
 });
