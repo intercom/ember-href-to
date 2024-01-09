@@ -58,7 +58,7 @@ export default class {
     let id = this.target.id;
     if (id) {
       let componentInstance = this.applicationInstance.lookup('-view-registry:main')[id];
-      isLinkComponent = componentInstance && componentInstance.constructor.superclass.toString() === '@ember/routing/link-component';
+      isLinkComponent = componentInstance && [componentInstance.constructor.toString(), componentInstance.constructor.superclass.toString()].includes('@ember/routing/link-component');
     }
 
     return !isLinkComponent;

@@ -15,6 +15,7 @@ module('Integration | HrefTo', function(hooks) {
     this.owner.lookup('router:main').setupRouter();
   })
 
+
   test(`#isNotLinkComponent should be true if the event target is not an instance of Em.LinkComponent`, async function(assert) {
     await render(hbs`{{not-a-link class='not-a-link'}}`);
 
@@ -23,6 +24,16 @@ module('Integration | HrefTo', function(hooks) {
 
     let hrefTo = new HrefTo(this.owner, event);
     assert.ok(hrefTo.isNotLinkComponent());
+  });
+
+  test(`#isNotLinkComponent should be false if the event target is a {{link-to}}`, async function(assert) {
+    await render(hbs`{{link-to 'about' 'about' class='a-link'}}`);
+
+    let event = leftClickEvent();
+    event.target = find('.a-link');
+
+    let hrefTo = new HrefTo(this.owner, event);
+    assert.notOk(hrefTo.isNotLinkComponent());
   });
 
   test(`#isNotLinkComponent should be false if the event target is an instance of Em.LinkComponent`, async function(assert) {
