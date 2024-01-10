@@ -19,7 +19,7 @@ This is an Ember CLI addon, to install:
 ## Supported Ember Versions
 
 - v5.0.1. supports Ember versions >=3.1 & <3.27
-- It does not work in apps using Ember's modernized `LinkTo`, which was introduced in Ember 3.27
+- It does not work in apps using Ember's modernized `LinkTo`, which was introduced in Ember 3.27 and built using Glimmer components. See [this comment](https://github.com/intercom/ember-href-to/pull/152#issuecomment-1882813145) for more info.
 
 ## Usage Instructions
 
