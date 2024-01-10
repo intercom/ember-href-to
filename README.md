@@ -16,6 +16,11 @@ This is an Ember CLI addon, to install:
 
 `ember install ember-href-to`
 
+## Supported Ember Versions
+
+- v5.0.1. supports Ember versions >=3.1 & <3.27
+- It does not work in apps using Ember's modernized `LinkTo`, which was introduced in Ember 3.27
+
 ## Usage Instructions
 
 `{{href-to}}` has the same interface as [`{{link-to}}`](https://guides.emberjs.com/v2.16.0/templates/links/), you can use it to link to static and dynamic routes in your ember application:
