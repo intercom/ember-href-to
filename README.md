@@ -1,6 +1,8 @@
 # ember-href-to
 
-A lightweight alternative to `{{link-to}}`. No components, no class bindings - just a bound anchor href and a click handler.
+This add-on:
+- Intercepts all `<a>` tags, performing in-app route transitions if recognized, normal links otherwise.
+- Provides an `{{href-to}}` helper as a lightweight alternative to `{{link-to}}`. No components, no class bindings - just a bound anchor href and a click handler.
 
 [![Build Status](https://github.com/intercom/ember-href-to/workflows/CI/badge.svg)](https://github.com/intercom/ember-href-to/actions) [![Ember Observer Score](http://emberobserver.com/badges/ember-href-to.svg)](http://emberobserver.com/addons/ember-href-to)
 
@@ -23,7 +25,9 @@ This is an Ember CLI addon, to install:
 
 ## Usage Instructions
 
-`{{href-to}}` has the same interface as [`{{link-to}}`](https://guides.emberjs.com/v2.16.0/templates/links/), you can use it to link to static and dynamic routes in your ember application:
+Once installed, this add-on will automatically intercept all `<a>` tags. Once clicked, if the href url is recognized as a route found within the current Ember application, it will perform an Ember transition without a page refresh. If not, it will link to the url as a normal anchor tag.
+
+You can use the `{{href-to}}` helper, which has the same interface as [`{{link-to}}`](https://guides.emberjs.com/release/routing/linking-between-routes/), to link to static and dynamic routes in your ember application:
 
 ```html
 <a href="{{href-to 'index'}}">Go Home</a>
@@ -41,6 +45,8 @@ This is an Ember CLI addon, to install:
   match it
 </a>
 ```
+
+**WARNING: This add-on intercepts _all_ `<a>` tags, not just ones that use the `{{href-to}}` helper. Be careful to check that external urls are still working correctly.** 
 
 As `{{href-to}}` simply generates a URL, you won't get automatic `active` class bindings as you do with `{{link-to}}`. Clicking on a `{{href-to}}` URL will trigger a full router transition though:
 
