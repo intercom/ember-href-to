@@ -1,6 +1,6 @@
 {
   "name": "ember-href-to",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "A lightweight alternative to `{{link-to}}`",
   "scripts": {
     "lint:hbs": "ember-template-lint .",
