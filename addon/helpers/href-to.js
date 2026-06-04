@@ -15,7 +15,7 @@ function getParamsForGenerateURL(params) {
   } else {
     queryParams = {};
   }
-  let models = params; // the remainder are the models
+  let models = params.flat(); // the remainder are the models
   return [targetRouteName, models, queryParams];
 }
 
