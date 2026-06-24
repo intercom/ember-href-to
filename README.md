@@ -2,13 +2,11 @@
 
 A lightweight alternative to `{{link-to}}`. No components, no class bindings - just a bound anchor href and a click handler.
 
-[![Build Status](https://github.com/intercom/ember-href-to/workflows/CI/badge.svg)](https://github.com/intercom/ember-href-to/actions) [![Ember Observer Score](http://emberobserver.com/badges/ember-href-to.svg)](http://emberobserver.com/addons/ember-href-to)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-href-to.svg)](http://emberobserver.com/addons/ember-href-to)
 
 ## Why use it?
 
 Every time you use a `{{link-to}}`, you create a component. This is usually fine, but in cases where you're creating many of these, performance can suffer. `{{href-to}}` simply creates a URL and is [12x faster](https://github.com/GavinJoyce/ember-performance/pull/1) than `{{link-to}}` in Ember 1.13.4.
-
-Questions? Ping me [@gavinjoyce](https://twitter.com/gavinjoyce)
 
 ## Installation
 
@@ -50,7 +48,6 @@ As `{{href-to}}` simply generates a URL, you won't get automatic `active` class 
 
 - `git clone` this repository
 - `npm install`
-- `bower install`
 
 ### Running
 

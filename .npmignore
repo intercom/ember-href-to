@@ -2,11 +2,7 @@
 /dist/
 /tmp/
 
-# dependencies
-/bower_components/
-
 # misc
-/.bowerrc
 /.editorconfig
 /.ember-cli
 /.env*
@@ -16,7 +12,6 @@
 /.template-lintrc.js
 /.travis.yml
 /.watchmanconfig
-/bower.json
 /config/ember-try.js
 /CONTRIBUTING.md
 /ember-cli-build.js
@@ -27,5 +22,4 @@
 
 # ember-try
 /.node_modules.ember-try/
-/bower.json.ember-try
 /package.json.ember-try
