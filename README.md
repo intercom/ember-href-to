@@ -1,3 +1,5 @@
+# 🚨🚨🚨 REPO ARCHIVED. THIS PACKAGE IS NOW BEEN MAINTAINED BY THE EMBER COMMUNITY AT https://github.com/adopted-ember-addons/ember-href-to 🚨🚨🚨 
+
 # ember-href-to
 
 A lightweight alternative to `{{link-to}}`. No components, no class bindings - just a bound anchor href and a click handler.
